@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent"
+    tools:context=".Action.Them_SP_Moi_Action">
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Nhập Hàng Mới"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="35sp"
+            android:textStyle="bold" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imgSpThemMoi"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+            <EditText
+                android:id="@+id/editTextMaSanPhamThemMoi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgSpThemMoi"
+                android:hint="Mã sản phẩm"
+                android:inputType="textPersonName"
+                android:textSize="35sp" />
+
+            <EditText
+
+                android:id="@+id/editTextTenSanPhamThemMoi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextMaSanPhamThemMoi"
+                android:hint="Tên sản phẩm"
+                android:inputType="textPersonName"
+                android:textSize="35sp" />
+
+            <EditText
+
+                android:id="@+id/editTextHangSanPhamThemMoi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextTenSanPhamThemMoi"
+                android:hint="Thương hiệu"
+                android:inputType="textPersonName"
+                android:textSize="35sp" />
+
+            <EditText
+
+                android:id="@+id/editTextMauSanPhamThemMoi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextHangSanPhamThemMoi"
+                android:hint="Màu sắc"
+                android:inputType="textPersonName"
+                android:textSize="35sp" />
+
+
+            <RelativeLayout
+                android:id="@+id/soluongspNhap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextMauSanPhamThemMoi">
+
+                <RelativeLayout
+                    android:id="@+id/SIZE41"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvsls41Nhap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Số lượng sản phẩm size 41:"
+                        android:textSize="25sp" />
+
+                    <EditText
+                        android:id="@+id/edtsls41Nhap"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/tvsls41Nhap"
+                        android:inputType="number"
+                        android:text="0"
+                        android:textSize="25sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/SIZE42"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/SIZE41">
+
+                    <TextView
+                        android:id="@+id/tvsls42Nhap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Số lượng sản phẩm size 42:"
+                        android:textSize="25sp" />
+
+                    <EditText
+                        android:id="@+id/edtsls42Nhap"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/tvsls42Nhap"
+                        android:inputType="number"
+                        android:text="0"
+                        android:textSize="25sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/SIZE43"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/SIZE42">
+
+                    <TextView
+                        android:id="@+id/tvsls43Nhap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Số lượng sản phẩm size 43:"
+                        android:textSize="25sp" />
+
+                    <EditText
+                        android:id="@+id/edtsls43Nhap"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_toRightOf="@+id/tvsls43Nhap"
+                        android:inputType="number"
+                        android:text="0"
+                        android:textSize="25sp" />
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+
+            <EditText
+                android:id="@+id/editTextGiaSanPhamThemMoi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/soluongspNhap"
+                android:hint="Giá nhập sản phẩm"
+                android:inputType="number"
+                android:textSize="35sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextGiaSanPhamThemMoi"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <Button
+                    android:id="@+id/btnThemSPMoiVaoKho"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="1"
+                    android:text="Thêm"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/btnHuyThemSPMoi"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_weight="1"
+                    android:text="Hủy"
+                    android:textSize="30sp" />
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/btnThemanhMoiCamera"
+                android:layout_width="63dp"
+                android:layout_height="58dp"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/imgSpThemMoi"
+                android:textSize="20sp"
+                app:srcCompat="@android:drawable/ic_menu_camera" />
+
+            <ImageView
+                android:id="@+id/btnThemanhMoiFolder"
+                android:layout_width="63dp"
+                android:layout_height="58dp"
+                android:layout_below="@+id/btnThemanhMoiCamera"
+                android:layout_marginLeft="15dp"
+                android:layout_toRightOf="@+id/imgSpThemMoi"
+                android:textSize="20sp"
+                app:srcCompat="@android:drawable/sym_contact_card" />
+        </RelativeLayout>
+    </LinearLayout>
+</ScrollView>

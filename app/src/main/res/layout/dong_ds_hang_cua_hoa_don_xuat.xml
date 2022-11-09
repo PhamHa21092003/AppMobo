@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/imageViewAnhSPChiTietHDXuat"
+            android:layout_width="78dp"
+            android:layout_height="76dp"
+            app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+        <TextView
+            android:id="@+id/tenspTRongdsHoaDonXuat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="90dp"
+            android:text="Tên sảm phẩm"
+            android:textAllCaps="true"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/giaspTRongdsHoaDonXuat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@+id/tenspTRongdsHoaDonXuat"
+            android:text="Giá nhập:"
+            android:textAllCaps="true"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/masptrongHDXuat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tenspTRongdsHoaDonXuat"
+            android:layout_marginLeft="90dp"
+            android:text="Mã sảm phẩm"
+            android:textAllCaps="true"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/SizesptronghdXuat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tenspTRongdsHoaDonXuat"
+            android:layout_marginLeft="50dp"
+            android:layout_toRightOf="@+id/masptrongHDXuat"
+            android:text="Size:"
+            android:textAllCaps="true"
+            android:textSize="23dp" />
+
+        <TextView
+            android:id="@+id/ThuongHieusptronghdXuat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tenspTRongdsHoaDonXuat"
+            android:layout_marginLeft="50dp"
+            android:layout_toRightOf="@+id/SizesptronghdXuat"
+            android:text="Thương hiệu:"
+            android:textAllCaps="true"
+            android:textSize="23dp" />
+
+        <TextView
+            android:id="@+id/MauSacsptronghdXuat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tenspTRongdsHoaDonXuat"
+            android:layout_marginLeft="50dp"
+            android:layout_toRightOf="@+id/ThuongHieusptronghdXuat"
+            android:text="Màu sắc:"
+            android:textAllCaps="true"
+            android:textSize="23dp" />
+
+        <TextView
+            android:id="@+id/soluongsptronghdXuat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_toRightOf="@+id/giaspTRongdsHoaDonXuat"
+            android:text="SL:"
+            android:textAllCaps="true"
+            android:textSize="23dp" />
+
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

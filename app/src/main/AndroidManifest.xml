@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.bangiaytablet">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BanGiayTablet"
+        tools:targetApi="31">
+        <activity
+            android:name=".Activity.LSCacLanNhapCuaSP_Activity"
+            android:exported="false"
+            android:parentActivityName=".Activity.HangTrongKho_Activity"
+            android:label="Lịch sử nhập hàng của mặt hàng"/>
+
+        <activity
+            android:name=".Activity.DSSP_ChiTietHoaDonXuat_Activity"
+            android:exported="false"
+            android:parentActivityName=".Activity.DSHD_ChiTietHoaDonXuat_Acivity"
+            android:label="Danh sách các sản phẩm trong hóa đơn"/>
+        <activity
+            android:name=".Activity.DSHD_ChiTietHoaDonXuat_Acivity"
+            android:exported="false"
+            android:parentActivityName=".Activity.MainActivity"
+            android:label="Danh sách hóa đơn xuất"/>
+        <activity
+            android:name=".Action.Sp_Xuat_Action"
+            android:exported="false"
+            android:parentActivityName=".Action.Xuat_Hang_Action"
+            android:label="Xuất hàng"/>
+        <activity
+            android:name=".Action.Xuat_Hang_Action"
+            android:exported="false"
+            android:parentActivityName=".Activity.XuatHang_Activity"
+            android:label="Xuất hàng"/>
+        <activity
+            android:name=".Activity.XuatHang_Activity"
+            android:exported="false"
+            android:label="Xuất hàng"
+            android:parentActivityName=".Activity.MainActivity" />
+        <activity
+            android:name=".Activity.DSSP_ChiTietHoaDonNhap_Activity"
+            android:exported="false"
+            android:parentActivityName=".Activity.DSHD_ChiTietHoaDonNhap_Activity"
+            android:label="Danh sách các sản phẩm trong hóa đơn"/>
+        <activity
+            android:name=".Activity.DSHD_ChiTietHoaDonNhap_Activity"
+            android:exported="false"
+            android:parentActivityName=".Activity.MainActivity"
+            android:label="Danh sách hóa đơn nhập"/>
+        <activity
+            android:name=".Action.Them_SP_Da_Co_Action"
+            android:exported="false"
+            android:parentActivityName=".Action.Nhap_Hang_Action"
+            android:label="Nhập hàng"/>
+        <activity
+            android:name=".Action.Them_SP_Moi_Action"
+            android:exported="false"
+            android:parentActivityName=".Action.Nhap_Hang_Action"
+            android:label="Nhập hàng mới"/>
+        <activity
+            android:name=".Action.Nhap_Hang_Action"
+            android:exported="false"
+            android:parentActivityName=".Activity.Nhap_Hang_Activity"
+            android:label="Nhập hàng"/>
+        <activity
+            android:name=".Activity.Nhap_Hang_Activity"
+            android:exported="false"
+            android:parentActivityName=".Activity.MainActivity"
+            android:label="Nhập hàng"/>
+        <activity
+            android:name=".Action.SuaSP_Action"
+            android:exported="false"
+            android:parentActivityName=".Activity.HangTrongKho_Activity"
+            android:label="Sửa sản phẩm"/>
+        <activity
+            android:name=".Activity.HangTrongKho_Activity"
+            android:exported="false"
+            android:label="Hàng trong kho"
+            android:parentActivityName=".Activity.MainActivity" />
+        <activity
+            android:name=".Activity.QuenMK_Activity"
+            android:exported="false"
+            android:label="Quên mật khẩu"
+            android:parentActivityName=".Activity.DangNhap_Activity" />
+        <activity
+            android:name=".Activity.DangKy_Activity"
+            android:exported="false"
+            android:label="Đăng ký"
+            android:parentActivityName=".Activity.DangNhap_Activity" />
+        <activity
+            android:name=".Activity.MainActivity"
+            android:exported="false"
+            android:label="Quản lý bán giày"
+            android:parentActivityName=".Activity.DangNhap_Activity" />
+        <activity
+            android:name=".Activity.DangNhap_Activity"
+            android:exported="true"
+            android:label="Quản lý bán giày">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

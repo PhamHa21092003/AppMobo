@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/maHDNhap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:text="Mã hóa đơn"
+            android:textAllCaps="true"
+            android:textSize="35sp" />
+        <TextView
+            android:id="@+id/tongsotiennhap"
+            android:layout_toRightOf="@+id/maHDNhap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
+            android:text="Tổng tiền"
+            android:textAllCaps="true"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/ngayNhapHang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/maHDNhap"
+            android:layout_marginLeft="15dp"
+            android:text="Ngày nhập"
+            android:textAllCaps="true"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/nhaCCNhapHang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/maHDNhap"
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@+id/ngayNhapHang"
+            android:text="Nhà cung cấp"
+            android:textAllCaps="true"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/nguoiNhapHang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/maHDNhap"
+            android:layout_marginLeft="60dp"
+            android:layout_toRightOf="@+id/nhaCCNhapHang"
+            android:text="Người nhập"
+            android:textAllCaps="true"
+            android:textSize="23sp" />
+    </RelativeLayout>
+
+</LinearLayout>

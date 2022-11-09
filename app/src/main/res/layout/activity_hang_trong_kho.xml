@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.HangTrongKho_Activity"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edtTimKiem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tìm kiếm...."
+            android:inputType="textPersonName"
+            android:textSize="35sp"
+
+            />
+
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/edtTimKiem"
+            android:layout_alignParentRight="true">
+
+            <RadioButton
+                android:id="@+id/rdoGiaGiam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giá cao đến thấp"
+                android:textSize="30sp"/>
+            <RadioButton
+                android:id="@+id/rdoGiaTang"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Giá thấp đến cao"
+                android:textSize="30sp"/>
+        </RadioGroup>
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lvloaigiay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbarStyle="outsideOverlay"
+        android:scrollingCache="true"
+        android:smoothScrollbar="true"
+        android:scrollbars="vertical"></ListView>
+
+</LinearLayout>
