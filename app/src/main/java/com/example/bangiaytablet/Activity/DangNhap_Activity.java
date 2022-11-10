@@ -67,7 +67,7 @@ public class DangNhap_Activity extends AppCompatActivity {
 
                 } else {
                     boolean trangthaitaikhoan = false;
-                    String name =  new String();
+                    String name = new String();
                     for (int i = 0; i < taiKhoanArrayList.size(); i++) {
                         if (tenDN1.equals(taiKhoanArrayList.get(i).getUsername()) && mk1.equals(taiKhoanArrayList.get(i).getPassword())) {
                             database.QuerryData("UPDATE User SET Trangthai=1 WHERE TenDN='" + tenDN1 + "'");

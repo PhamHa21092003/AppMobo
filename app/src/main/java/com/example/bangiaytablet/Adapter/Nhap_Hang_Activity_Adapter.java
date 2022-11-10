@@ -47,54 +47,52 @@ public class Nhap_Hang_Activity_Adapter extends BaseAdapter {
     }
 
 
-    private class ViewHolderNhap{
-        public TextView tvTenSPNhap,tvMaSPNhap,tvSLnhap,mausac,giaNhap,Size;
+    private class ViewHolderNhap {
+        public TextView tvTenSPNhap, tvMaSPNhap, tvSLnhap, mausac, giaNhap, Size;
         public ImageView imgXoa, anhsp;
     }
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-    ViewHolderNhap viewHolder;
-        if(view==null){
-            viewHolder= new ViewHolderNhap();
-            LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view=inflater.inflate(layout,null);
+        ViewHolderNhap viewHolder;
+        if (view == null) {
+            viewHolder = new ViewHolderNhap();
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(layout, null);
 
             //Anh xa
-            viewHolder.tvTenSPNhap= view.findViewById(R.id.tenspDangNhap);
-            viewHolder.tvMaSPNhap=view.findViewById(R.id.maspDangNhap);
-            viewHolder.tvSLnhap=view.findViewById(R.id.soluongspDangNhap);
-            viewHolder.imgXoa=view.findViewById(R.id.btnXoaSPtrongDSDANgNhap);
-            viewHolder.mausac=view.findViewById(R.id.mausacspDangnhap);
-            viewHolder.giaNhap=view.findViewById(R.id.GiaspDangnhap);
-            viewHolder.Size=view.findViewById(R.id.sizespDangnhap);
-            viewHolder.anhsp=view.findViewById(R.id.imageViewAnhSPNhap);
+            viewHolder.tvTenSPNhap = view.findViewById(R.id.tenspDangNhap);
+            viewHolder.tvMaSPNhap = view.findViewById(R.id.maspDangNhap);
+            viewHolder.tvSLnhap = view.findViewById(R.id.soluongspDangNhap);
+            viewHolder.imgXoa = view.findViewById(R.id.btnXoaSPtrongDSDANgNhap);
+            viewHolder.mausac = view.findViewById(R.id.mausacspDangnhap);
+            viewHolder.giaNhap = view.findViewById(R.id.GiaspDangnhap);
+            viewHolder.Size = view.findViewById(R.id.sizespDangnhap);
+            viewHolder.anhsp = view.findViewById(R.id.imageViewAnhSPNhap);
             view.setTag(viewHolder);
 
 
+        } else {
+            viewHolder = (ViewHolderNhap) view.getTag();
         }
-        else{
-            viewHolder= (ViewHolderNhap) view.getTag();
-        }
-        ChitietHoaDonNhap Sp= ChiTietHoaDonNhapList.get(i);
-        String SL=Integer.toString(Sp.getSoLuongNhap());
+        ChitietHoaDonNhap Sp = ChiTietHoaDonNhapList.get(i);
+        String SL = Integer.toString(Sp.getSoLuongNhap());
         viewHolder.tvTenSPNhap.setText(Sp.getTenhangNhap());
-        viewHolder.tvMaSPNhap.setText("Mã SP: "+Sp.getMaHangNhap());
-        viewHolder.tvSLnhap.setText("SL: "+SL);
-        viewHolder.mausac.setText("Màu: "+Sp.getMauSac());
-        viewHolder.Size.setText("Size: "+Sp.getSizeNhap());
-        viewHolder.giaNhap.setText("Giá nhập: "+Sp.getGiaNhap());
+        viewHolder.tvMaSPNhap.setText("Mã SP: " + Sp.getMaHangNhap());
+        viewHolder.tvSLnhap.setText("SL: " + SL);
+        viewHolder.mausac.setText("Màu: " + Sp.getMauSac());
+        viewHolder.Size.setText("Size: " + Sp.getSizeNhap());
+        viewHolder.giaNhap.setText("Giá nhập: " + Sp.getGiaNhap());
         //chuyển byte[]->bitmap
-        byte[] hinhAnh= Sp.getAnhsp();
-        Bitmap bitmap= BitmapFactory.decodeByteArray(hinhAnh,0,hinhAnh.length);
+        byte[] hinhAnh = Sp.getAnhsp();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh, 0, hinhAnh.length);
         viewHolder.anhsp.setImageBitmap(bitmap);
-
 
 
         viewHolder.imgXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                context.DialogXoa(Sp.getTenhangNhap(),Sp.getMaHangNhap(),Sp.getSizeNhap(),Sp.getSoLuongNhap());
+                context.DialogXoa(Sp.getTenhangNhap(), Sp.getMaHangNhap(), Sp.getSizeNhap(), Sp.getSoLuongNhap());
             }
         });
         return view;

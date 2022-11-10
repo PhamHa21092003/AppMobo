@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Action.Sp_Xuat_Action"
     android:padding="15dp"
-    >
+    tools:context=".Action.Sp_Xuat_Action">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -59,11 +58,11 @@
 
 
         <LinearLayout
-            android:orientation="vertical"
             android:id="@+id/soluongspNhap"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/TextMauSanPhamXuat">
+            android:layout_below="@+id/TextMauSanPhamXuat"
+            android:orientation="vertical">
 
             <RadioGroup
                 android:layout_width="wrap_content"

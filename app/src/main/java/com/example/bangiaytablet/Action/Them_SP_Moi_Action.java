@@ -56,7 +56,6 @@ public class Them_SP_Moi_Action extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_sp_moi_action);
 
-
         arrayList= new ArrayList<>();
         arrayListHoaDonNhap= new ArrayList<>();
         arrayListChiTietHoaDonNhap= new ArrayList<>();

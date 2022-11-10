@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.XuatHang_Activity"
     android:layout_margin="15dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Activity.XuatHang_Activity">
 
     <TextView
         android:id="@+id/mahoadonxuat"
@@ -31,9 +31,9 @@
 
     <TextView
         android:id="@+id/tvNguoiLapHoaDonxuat"
-        android:layout_below="@+id/NgaytaoHoaDonxuat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/NgaytaoHoaDonxuat"
         android:text="Người lập hóa đơn"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,8 +83,6 @@
         android:text="Tổng tiền:"
         android:textColor="@color/black"
         android:textSize="35sp" />
-
-
 
 
 </RelativeLayout>

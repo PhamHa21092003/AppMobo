@@ -1,8 +1,8 @@
 package com.example.bangiaytablet.Class;
 
 public class Hang {
-    String maHang,tenHang,nhaSanXuat,mausac;
-    int size41,size42,size43;
+    String maHang, tenHang, nhaSanXuat, mausac;
+    int size41, size42, size43;
     int SoLuong;
     Double gia;
     byte[] hinhanh;

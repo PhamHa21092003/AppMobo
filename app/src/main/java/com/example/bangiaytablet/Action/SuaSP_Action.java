@@ -37,12 +37,12 @@ public class SuaSP_Action extends AppCompatActivity {
     Intent intent;
     String tenspsua, maspsua, size41, size42, size43;
     EditText edtTensp, edtSLsize41, edtSLsize42, edtSLsize43;
-    ImageView anhSP,moCamera,moFolder;
+    ImageView anhSP, moCamera, moFolder;
     ArrayList<Hang> arrayList;
     Button btnThaydoi, btnHuy;
     DatabaseQuanLy database;
-    final int REQUEST_CODE_CAMERA=123;
-    final int REQUEST_CODE_FOLDER=456;
+    final int REQUEST_CODE_CAMERA = 123;
+    final int REQUEST_CODE_FOLDER = 456;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +63,9 @@ public class SuaSP_Action extends AppCompatActivity {
         edtSLsize41 = findViewById(R.id.edtsls41);
         edtSLsize42 = findViewById(R.id.edtsls42);
         edtSLsize43 = findViewById(R.id.edtsls43);
-        anhSP=findViewById(R.id.imgSpSua);
-        moFolder=findViewById(R.id.btnThemanhSuaFolder);
-        moCamera=findViewById(R.id.btnThemanhSuaCamera);
+        anhSP = findViewById(R.id.imgSpSua);
+        moFolder = findViewById(R.id.btnThemanhSuaFolder);
+        moCamera = findViewById(R.id.btnThemanhSuaCamera);
 
 
         btnThaydoi = findViewById(R.id.btnCapNhapSua);
@@ -73,7 +73,7 @@ public class SuaSP_Action extends AppCompatActivity {
         getAnh();
 
         for (int i = 0; i < arrayList.size(); i++) {
-            if(arrayList.get(i).getMaHang().equalsIgnoreCase(maspsua)){
+            if (arrayList.get(i).getMaHang().equalsIgnoreCase(maspsua)) {
                 byte[] hinhAnh = arrayList.get(i).getHinhanh();
                 Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh, 0, hinhAnh.length);
                 anhSP.setImageBitmap(bitmap);
@@ -103,9 +103,6 @@ public class SuaSP_Action extends AppCompatActivity {
                 );
             }
         });
-
-
-
 
 
         edtTensp.setText(tenspsua);
@@ -151,11 +148,11 @@ public class SuaSP_Action extends AppCompatActivity {
                     int TongSoSP = SLSize41moiINT + SLSize42moiINT + SLSize43moiINT;
 
                     //chuyển từ dataImageView ->byte[];
-                    BitmapDrawable bitmapDrawable= (BitmapDrawable) anhSP.getDrawable();
-                    Bitmap bitmap=bitmapDrawable.getBitmap();
-                    ByteArrayOutputStream byteArray= new ByteArrayOutputStream();
+                    BitmapDrawable bitmapDrawable = (BitmapDrawable) anhSP.getDrawable();
+                    Bitmap bitmap = bitmapDrawable.getBitmap();
+                    ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
                     bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArray);
-                    byte[] hinhAnh= byteArray.toByteArray();
+                    byte[] hinhAnh = byteArray.toByteArray();
 
                     database.QuerryData("UPDATE Hang SET TENlOAIGIAY='" + tenmoi + "',TongSl='" + TongSoSP + "',Size41='" + SLSize41moiINT + "',Size42='" + SLSize42moiINT + "',Size43='" + SLSize43moiINT + "' WHERE MAHANG='" + maspsua + "'");
                     database.updateImageProduct(maspsua, hinhAnh);
@@ -171,24 +168,22 @@ public class SuaSP_Action extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode){
+        switch (requestCode) {
             case REQUEST_CODE_CAMERA:
-                if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                    Intent intent1=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent1,REQUEST_CODE_CAMERA);
-                }
-                else {
-                    Toast.makeText(SuaSP_Action.this,"Bạn không cấp quyền cho mở Camera",Toast.LENGTH_SHORT).show();
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent1 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent1, REQUEST_CODE_CAMERA);
+                } else {
+                    Toast.makeText(SuaSP_Action.this, "Bạn không cấp quyền cho mở Camera", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case REQUEST_CODE_FOLDER:
-                if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                    Intent intent1=new Intent(Intent.ACTION_PICK);
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent1 = new Intent(Intent.ACTION_PICK);
                     intent1.setType("image/*");
-                    startActivityForResult(intent1,REQUEST_CODE_FOLDER);
-                }
-                else {
-                    Toast.makeText(SuaSP_Action.this,"Bạn không cấp quyền cho mở Folder",Toast.LENGTH_SHORT).show();
+                    startActivityForResult(intent1, REQUEST_CODE_FOLDER);
+                } else {
+                    Toast.makeText(SuaSP_Action.this, "Bạn không cấp quyền cho mở Folder", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
@@ -199,15 +194,15 @@ public class SuaSP_Action extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode==REQUEST_CODE_CAMERA && resultCode==RESULT_OK && data!=null){
-            Bitmap bitmap= (Bitmap) data.getExtras().get("data");
+        if (requestCode == REQUEST_CODE_CAMERA && resultCode == RESULT_OK && data != null) {
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             anhSP.setImageBitmap(bitmap);
         }
-        if(requestCode==REQUEST_CODE_FOLDER && resultCode==RESULT_OK && data!=null){
-            Uri uri= data.getData();
+        if (requestCode == REQUEST_CODE_FOLDER && resultCode == RESULT_OK && data != null) {
+            Uri uri = data.getData();
             try {
-                InputStream inputStream= getContentResolver().openInputStream(uri);
-                Bitmap bitmap= BitmapFactory.decodeStream(inputStream);
+                InputStream inputStream = getContentResolver().openInputStream(uri);
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                 anhSP.setImageBitmap(bitmap);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

@@ -1,8 +1,8 @@
 package com.example.bangiaytablet.Class;
 
 public class ChitietHoaDonNhap {
-    int MaHoaDonNhap,soLuongNhap,SizeNhap;
-    String MaHangNhap,tenhangNhap,MauSac,thuonghieu;
+    int MaHoaDonNhap, soLuongNhap, SizeNhap;
+    String MaHangNhap, tenhangNhap, MauSac, thuonghieu;
     Double giaNhap;
     byte[] anhsp;
 

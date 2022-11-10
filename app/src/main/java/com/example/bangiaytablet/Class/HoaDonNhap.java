@@ -1,7 +1,7 @@
 package com.example.bangiaytablet.Class;
 
 public class HoaDonNhap {
-    String ngayTaoHoaDon,nguoiNhap,ncc;
+    String ngayTaoHoaDon, nguoiNhap, ncc;
     int MaHoaDon;
     Double tongtien;
 

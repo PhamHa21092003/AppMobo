@@ -60,7 +60,7 @@ public class DangKy_Activity extends AppCompatActivity {
                         Toast.makeText(DangKy_Activity.this, "Tên đăng nhập đã tồn tại", Toast.LENGTH_SHORT).show();
                         existAccount.close();
                     } else {
-                        if(mkTK.equals(nhaplaimk)){
+                        if (mkTK.equals(nhaplaimk)) {
                             ContentValues values = new ContentValues();
                             values.put("TenDN", tentkDk);
                             values.put("matkhau", mkTK);
@@ -73,8 +73,8 @@ public class DangKy_Activity extends AppCompatActivity {
                             intent.putExtra("userreg", tentkDk);
                             intent.putExtra("passreg", mkTK);
                             startActivity(intent);
-                        }
-                        else Toast.makeText(DangKy_Activity.this, "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
+                        } else
+                            Toast.makeText(DangKy_Activity.this, "Mật khẩu không trùng khớp", Toast.LENGTH_SHORT).show();
                     }
                 }
 //                    if (nhaplaimk.equals(mkTK)) {

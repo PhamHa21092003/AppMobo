@@ -48,57 +48,56 @@ public class Nhap_Hang_Action_Adapter extends BaseAdapter {
         return 0;
     }
 
-    private class ViewHolderNhap{
-        public TextView tvTenSPNhap,tvMaSPNhap,tvSL,mausac;
-        public ImageView imgNhap,imgANhSP;
+    private class ViewHolderNhap {
+        public TextView tvTenSPNhap, tvMaSPNhap, tvSL, mausac;
+        public ImageView imgNhap, imgANhSP;
     }
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         ViewHolderNhap viewHolder;
-        if(view==null){
-            viewHolder= new ViewHolderNhap();
-            LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view=inflater.inflate(layout,null);
+        if (view == null) {
+            viewHolder = new ViewHolderNhap();
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(layout, null);
 
             //Anh xa
-            viewHolder.tvTenSPNhap= view.findViewById(R.id.tensptrongkhonsptrongkhoNhap);
-            viewHolder.tvMaSPNhap=view.findViewById(R.id.masptrongkhoNhap);
-            viewHolder.tvSL=view.findViewById(R.id.soluongsptrongkhoNhap);
-            viewHolder.imgNhap=view.findViewById(R.id.btnNhapThemSP);
-            viewHolder.mausac=view.findViewById(R.id.mausacspnhap);
-            viewHolder.imgANhSP=view.findViewById(R.id.imageViewAnhSPNhap);
+            viewHolder.tvTenSPNhap = view.findViewById(R.id.tensptrongkhonsptrongkhoNhap);
+            viewHolder.tvMaSPNhap = view.findViewById(R.id.masptrongkhoNhap);
+            viewHolder.tvSL = view.findViewById(R.id.soluongsptrongkhoNhap);
+            viewHolder.imgNhap = view.findViewById(R.id.btnNhapThemSP);
+            viewHolder.mausac = view.findViewById(R.id.mausacspnhap);
+            viewHolder.imgANhSP = view.findViewById(R.id.imageViewAnhSPNhap);
             view.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolderNhap) view.getTag();
         }
-        else{
-            viewHolder= (ViewHolderNhap) view.getTag();
-        }
-        Hang Sp= HangList.get(position);
-        String SL=Integer.toString(Sp.getSoLuong());
+        Hang Sp = HangList.get(position);
+        String SL = Integer.toString(Sp.getSoLuong());
         viewHolder.tvTenSPNhap.setText(Sp.getTenHang());
-        viewHolder.tvMaSPNhap.setText("Mã SP: "+Sp.getMaHang());
-        viewHolder.tvSL.setText("SL: "+SL);
-        viewHolder.mausac.setText("Màu: "+Sp.getMausac());
+        viewHolder.tvMaSPNhap.setText("Mã SP: " + Sp.getMaHang());
+        viewHolder.tvSL.setText("SL: " + SL);
+        viewHolder.mausac.setText("Màu: " + Sp.getMausac());
         //chuyển byte[]->bitmap
-        byte[] hinhAnh= Sp.getHinhanh();
-        Bitmap bitmap= BitmapFactory.decodeByteArray(hinhAnh,0,hinhAnh.length);
+        byte[] hinhAnh = Sp.getHinhanh();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh, 0, hinhAnh.length);
         viewHolder.imgANhSP.setImageBitmap(bitmap);
         viewHolder.imgNhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent=new Intent(context, Them_SP_Da_Co_Action.class);
-                String tenSpThem= Sp.getTenHang();
-                String maSpThem= Sp.getMaHang();
-                int SLSp= Sp.getSoLuong();
-                String SlSpThem=Integer.toString(SLSp);
-                intent.putExtra("maSpThem",maSpThem);
-                intent.putExtra("tenSpThem",tenSpThem);
-                intent.putExtra("tenthuonghieu",Sp.getNhaSanXuat());
-                intent.putExtra("MauSac",Sp.getMausac());
-                intent.putExtra("Size41",Integer.toString(Sp.getSize41()));
-                intent.putExtra("Size42",Integer.toString(Sp.getSize42()));
-                intent.putExtra("Size43",Integer.toString(Sp.getSize43()));
-                intent.putExtra("tongSL",Integer.toString(Sp.getSoLuong()));
+                intent = new Intent(context, Them_SP_Da_Co_Action.class);
+                String tenSpThem = Sp.getTenHang();
+                String maSpThem = Sp.getMaHang();
+                int SLSp = Sp.getSoLuong();
+                String SlSpThem = Integer.toString(SLSp);
+                intent.putExtra("maSpThem", maSpThem);
+                intent.putExtra("tenSpThem", tenSpThem);
+                intent.putExtra("tenthuonghieu", Sp.getNhaSanXuat());
+                intent.putExtra("MauSac", Sp.getMausac());
+                intent.putExtra("Size41", Integer.toString(Sp.getSize41()));
+                intent.putExtra("Size42", Integer.toString(Sp.getSize42()));
+                intent.putExtra("Size43", Integer.toString(Sp.getSize43()));
+                intent.putExtra("tongSL", Integer.toString(Sp.getSoLuong()));
                 context.startActivity(intent);
             }
         });

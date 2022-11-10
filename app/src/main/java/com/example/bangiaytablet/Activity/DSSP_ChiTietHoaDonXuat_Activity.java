@@ -33,43 +33,43 @@ public class DSSP_ChiTietHoaDonXuat_Activity extends AppCompatActivity {
 
         lv = findViewById(R.id.lv_DSSP_ChiTietHDXuat);
         arrayListHang = new ArrayList<>();
-        arrayListChiTietXuatHang= new ArrayList<>();
-        adapter = new DS_SanPhamXuat_ChiTietHoaDonXuat_Adapter(this,R.layout.dong_ds_hang_cua_hoa_don_xuat,arrayListChiTietXuatHang);
+        arrayListChiTietXuatHang = new ArrayList<>();
+        adapter = new DS_SanPhamXuat_ChiTietHoaDonXuat_Adapter(this, R.layout.dong_ds_hang_cua_hoa_don_xuat, arrayListChiTietXuatHang);
         lv.setAdapter(adapter);
 
         database = new DatabaseQuanLy(this, "QuanLyBanGiayDn.sqlite", null, 1);
 
-        mahdNhan=getIntent().getStringExtra("maHDXuat");
-        mahd= Integer.parseInt(mahdNhan);
+        mahdNhan = getIntent().getStringExtra("maHDXuat");
+        mahd = Integer.parseInt(mahdNhan);
         hienthiDL();
     }
 
     private void hienthiDL() {
-        Cursor dataChiTietHoaDonXuat = database.GetData("SELECT * FROM ChiTietHoaDonXuat Where maHDXuat='"+mahd+"'");
+        Cursor dataChiTietHoaDonXuat = database.GetData("SELECT * FROM ChiTietHoaDonXuat Where maHDXuat='" + mahd + "'");
         Cursor dataHang = database.GetData("SELECT * FROM Hang");
-        String mahang,tenSP,MauSac,thuonghieu="";
-        int soLuongNhap,size;
-        byte[] anhsp=null;
+        String mahang, tenSP, MauSac, thuonghieu = "";
+        int soLuongNhap, size;
+        byte[] anhsp = null;
         Double gianhap;
         arrayListChiTietXuatHang.clear();
         while (dataChiTietHoaDonXuat.moveToNext()) {
-            mahang=dataChiTietHoaDonXuat.getString(1);
-            soLuongNhap=dataChiTietHoaDonXuat.getInt(2);
-            gianhap=dataChiTietHoaDonXuat.getDouble(3);
-            size=dataChiTietHoaDonXuat.getInt(4);
-            tenSP=MauSac="";
-            while (dataHang.moveToNext()){
-                String mahangtrongkho=dataHang.getString(0);
-                if(mahangtrongkho.equalsIgnoreCase(mahang)){
-                    tenSP=dataHang.getString(1);
-                    MauSac=dataHang.getString(5);
-                    anhsp=dataHang.getBlob(9);
-                    thuonghieu=dataHang.getString(4);
+            mahang = dataChiTietHoaDonXuat.getString(1);
+            soLuongNhap = dataChiTietHoaDonXuat.getInt(2);
+            gianhap = dataChiTietHoaDonXuat.getDouble(3);
+            size = dataChiTietHoaDonXuat.getInt(4);
+            tenSP = MauSac = "";
+            while (dataHang.moveToNext()) {
+                String mahangtrongkho = dataHang.getString(0);
+                if (mahangtrongkho.equalsIgnoreCase(mahang)) {
+                    tenSP = dataHang.getString(1);
+                    MauSac = dataHang.getString(5);
+                    anhsp = dataHang.getBlob(9);
+                    thuonghieu = dataHang.getString(4);
                     break;
                 }
             }
             dataHang.moveToFirst();
-            arrayListChiTietXuatHang.add(new ChiTiethoaDonXuat(mahd,soLuongNhap,size,mahang,tenSP,MauSac,thuonghieu,gianhap,anhsp));
+            arrayListChiTietXuatHang.add(new ChiTiethoaDonXuat(mahd, soLuongNhap, size, mahang, tenSP, MauSac, thuonghieu, gianhap, anhsp));
         }
         adapter.notifyDataSetChanged();
     }

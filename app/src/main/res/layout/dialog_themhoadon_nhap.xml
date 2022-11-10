@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="20dp">
 
     <EditText
@@ -12,8 +12,7 @@
         android:ems="10"
         android:hint="Ngày lập hóa đơn"
         android:inputType="datetime"
-        android:textSize="35sp"
-        />
+        android:textSize="35sp" />
 
     <EditText
         android:id="@+id/editTextNhaCungCap"
@@ -22,22 +21,21 @@
         android:ems="10"
         android:hint="Nhà cung cấp"
         android:inputType="textPersonName"
-        android:textSize="35sp"
-        />
+        android:textSize="35sp" />
 
     <Button
         android:id="@+id/buttonThemHoaDonNhap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="35sp"
-        android:text="Tạo hóa đơn" />
+        android:text="Tạo hóa đơn"
+        android:textSize="35sp" />
 
     <Button
         android:id="@+id/buttonHuyTaoHoaDonNhap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="35sp"
-        android:text="Hủy" />
+        android:text="Hủy"
+        android:textSize="35sp" />
 
 
 </LinearLayout>

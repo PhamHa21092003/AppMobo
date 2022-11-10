@@ -34,15 +34,14 @@ public class Xuat_Hang_Action extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_xuat_hang_action);
 
-        arrayList=new ArrayList<>();
-        lv=findViewById(R.id.lvloaigiayXuat);
-        timkiemsp=findViewById(R.id.edtTimKiemXuatHang);
-        adapter = new Xuat_Hang_Action_Adapter(this,R.layout.dong_xuat_hang,arrayList);
+        arrayList = new ArrayList<>();
+        lv = findViewById(R.id.lvloaigiayXuat);
+        timkiemsp = findViewById(R.id.edtTimKiemXuatHang);
+        adapter = new Xuat_Hang_Action_Adapter(this, R.layout.dong_xuat_hang, arrayList);
         lv.setAdapter(adapter);
         //Tao DB
         database = new DatabaseQuanLy(this, "QuanLyBanGiayDn.sqlite", null, 1);
         hienthiDL();
-
 
 
         timkiemsp.addTextChangedListener(new TextWatcher() {
@@ -54,37 +53,37 @@ public class Xuat_Hang_Action extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-                String NDTIM= timkiemsp.getText().toString().trim();
-                if(TextUtils.isEmpty(NDTIM)){
+                String NDTIM = timkiemsp.getText().toString().trim();
+                if (TextUtils.isEmpty(NDTIM)) {
                     Cursor dataHang = database.GetData("SELECT * FROM Hang");
                     arrayList.clear();
                     while (dataHang.moveToNext()) {
                         int SL = dataHang.getInt(2);
                         String TenHang = dataHang.getString(1);
                         String MaHang = dataHang.getString(0);
-                        String MauSac= dataHang.getString(5);
-                        Double Gia=dataHang.getDouble(3);
-                        arrayList.add(new Hang(MaHang,TenHang,MauSac,SL,Gia,dataHang.getBlob(9)));
+                        String MauSac = dataHang.getString(5);
+                        Double Gia = dataHang.getDouble(3);
+                        arrayList.add(new Hang(MaHang, TenHang, MauSac, SL, Gia, dataHang.getBlob(9)));
                     }
                     adapter.notifyDataSetChanged();
-                    adapter= new Xuat_Hang_Action_Adapter(Xuat_Hang_Action.this,R.layout.dong_xuat_hang,arrayList);
+                    adapter = new Xuat_Hang_Action_Adapter(Xuat_Hang_Action.this, R.layout.dong_xuat_hang, arrayList);
                     lv.setAdapter(adapter);
                     return;
                 }
 
 
-                Cursor dataHang = database.GetData("SELECT * FROM Hang WHERE MAHANG Like '%"+NDTIM+"%' or TENlOAIGIAY Like '%"+NDTIM+"%' ");
+                Cursor dataHang = database.GetData("SELECT * FROM Hang WHERE MAHANG Like '%" + NDTIM + "%' or TENlOAIGIAY Like '%" + NDTIM + "%' ");
                 arrayList.clear();
                 while (dataHang.moveToNext()) {
                     int SL = dataHang.getInt(2);
                     String TenHang = dataHang.getString(1);
                     String MaHang = dataHang.getString(0);
-                    String MauSac= dataHang.getString(5);
-                    Double Gia=dataHang.getDouble(3);
-                    arrayList.add(new Hang(MaHang,TenHang,MauSac,SL,Gia,dataHang.getBlob(9)));
+                    String MauSac = dataHang.getString(5);
+                    Double Gia = dataHang.getDouble(3);
+                    arrayList.add(new Hang(MaHang, TenHang, MauSac, SL, Gia, dataHang.getBlob(9)));
                 }
                 adapter.notifyDataSetChanged();
-                adapter= new Xuat_Hang_Action_Adapter(Xuat_Hang_Action.this,R.layout.dong_xuat_hang,arrayList);
+                adapter = new Xuat_Hang_Action_Adapter(Xuat_Hang_Action.this, R.layout.dong_xuat_hang, arrayList);
                 lv.setAdapter(adapter);
 
             }
@@ -103,13 +102,13 @@ public class Xuat_Hang_Action extends AppCompatActivity {
             int SL = dataHang.getInt(2);
             String TenHang = dataHang.getString(1);
             String MaHang = dataHang.getString(0);
-            String MauSac= dataHang.getString(5);
-            String hangSX=dataHang.getString(4);
-            int SLSize41=dataHang.getInt(6);
-            int SLSize42=dataHang.getInt(7);
-            int SLSize43=dataHang.getInt(8);
-            Double Gia=dataHang.getDouble(3);
-            arrayList.add(new Hang(MaHang,TenHang,hangSX,MauSac,SLSize41,SLSize42,SLSize43,SL,Gia,dataHang.getBlob(9)));
+            String MauSac = dataHang.getString(5);
+            String hangSX = dataHang.getString(4);
+            int SLSize41 = dataHang.getInt(6);
+            int SLSize42 = dataHang.getInt(7);
+            int SLSize43 = dataHang.getInt(8);
+            Double Gia = dataHang.getDouble(3);
+            arrayList.add(new Hang(MaHang, TenHang, hangSX, MauSac, SLSize41, SLSize42, SLSize43, SL, Gia, dataHang.getBlob(9)));
         }
         adapter.notifyDataSetChanged();
     }

@@ -44,50 +44,50 @@ public class LSNhapHangCuaSP_Adapter extends BaseAdapter {
         return 0;
     }
 
-    private class ViewHolder{
-        public TextView tensp,masp,sl,gia,mausac,thuonghieu,size;
+    private class ViewHolder {
+        public TextView tensp, masp, sl, gia, mausac, thuonghieu, size;
         public ImageView anhSP;
 
     }
+
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-       ViewHolder viewHolder;
-        if(view==null){
-            viewHolder= new ViewHolder();
-            LayoutInflater inflater= (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view=inflater.inflate(layout,null);
+        ViewHolder viewHolder;
+        if (view == null) {
+            viewHolder = new ViewHolder();
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = inflater.inflate(layout, null);
 
             //Anh xa
-            viewHolder.tensp= view.findViewById(R.id.tenspTRongdsHoaDon);
-            viewHolder.masp=view.findViewById(R.id.masptrongHDNHAP);
-            viewHolder.sl=view.findViewById(R.id.soluongsptronghdnhap);
-            viewHolder.gia=view.findViewById(R.id.giaspTRongdsHoaDon);
-            viewHolder.mausac=view.findViewById(R.id.MauSacsptronghdnhap);
-            viewHolder.thuonghieu=view.findViewById(R.id.ThuongHieusptronghdnhap);
-            viewHolder.size=view.findViewById(R.id.Sizesptronghdnhap);
-            viewHolder.anhSP=view.findViewById(R.id.imageViewAnhSPChiTietHDNhap);
+            viewHolder.tensp = view.findViewById(R.id.tenspTRongdsHoaDon);
+            viewHolder.masp = view.findViewById(R.id.masptrongHDNHAP);
+            viewHolder.sl = view.findViewById(R.id.soluongsptronghdnhap);
+            viewHolder.gia = view.findViewById(R.id.giaspTRongdsHoaDon);
+            viewHolder.mausac = view.findViewById(R.id.MauSacsptronghdnhap);
+            viewHolder.thuonghieu = view.findViewById(R.id.ThuongHieusptronghdnhap);
+            viewHolder.size = view.findViewById(R.id.Sizesptronghdnhap);
+            viewHolder.anhSP = view.findViewById(R.id.imageViewAnhSPChiTietHDNhap);
 
             view.setTag(viewHolder);
 
+        } else {
+            viewHolder = (ViewHolder) view.getTag();
         }
-        else{
-            viewHolder= (ViewHolder)view.getTag();
-        }
-        ChitietHoaDonNhap HD= ChiTietNhapList.get(i);
-        String sl=Integer.toString(HD.getSoLuongNhap());
-        String sizenhap=Integer.toString(HD.getSizeNhap());
-        String gianhap= Double.toString(HD.getGiaNhap());
+        ChitietHoaDonNhap HD = ChiTietNhapList.get(i);
+        String sl = Integer.toString(HD.getSoLuongNhap());
+        String sizenhap = Integer.toString(HD.getSizeNhap());
+        String gianhap = Double.toString(HD.getGiaNhap());
         viewHolder.tensp.setText(HD.getTenhangNhap());
-        viewHolder.masp.setText("Mã SP: "+HD.getMaHangNhap());
-        viewHolder.sl.setText("Sl: "+sl);
-        viewHolder.gia.setText("Giá: "+gianhap);
-        viewHolder.size.setText("Size: "+sizenhap);
-        viewHolder.mausac.setText("Màu sắc: "+HD.getMauSac());
-        viewHolder.thuonghieu.setText("Thương hiệu: "+HD.getThuonghieu());
+        viewHolder.masp.setText("Mã SP: " + HD.getMaHangNhap());
+        viewHolder.sl.setText("Sl: " + sl);
+        viewHolder.gia.setText("Giá: " + gianhap);
+        viewHolder.size.setText("Size: " + sizenhap);
+        viewHolder.mausac.setText("Màu sắc: " + HD.getMauSac());
+        viewHolder.thuonghieu.setText("Thương hiệu: " + HD.getThuonghieu());
 
         //chuyển byte[]->bitmap
-        byte[] hinhAnh= HD.getAnhsp();
-        Bitmap bitmap= BitmapFactory.decodeByteArray(hinhAnh,0,hinhAnh.length);
+        byte[] hinhAnh = HD.getAnhsp();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(hinhAnh, 0, hinhAnh.length);
         viewHolder.anhSP.setImageBitmap(bitmap);
         return view;
     }

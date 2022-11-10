@@ -25,19 +25,19 @@ public class DatabaseQuanLy extends SQLiteOpenHelper {
         return database.rawQuery(sql, null);
     }
 
-    public Cursor getData(String sql, String[] strings){  // rawQuery return A Cursor object, which is positioned before the first entry. Note that Cursors are not synchronized, see the documentation for more details.
+    public Cursor getData(String sql, String[] strings) {  // rawQuery return A Cursor object, which is positioned before the first entry. Note that Cursors are not synchronized, see the documentation for more details.
         SQLiteDatabase database = getReadableDatabase();
         return database.rawQuery(sql, strings);
     }
 
-    public long insertData(String nameTable, ContentValues values){ // insert return the row ID of the newly inserted row, or -1 if an error occurred
+    public long insertData(String nameTable, ContentValues values) { // insert return the row ID of the newly inserted row, or -1 if an error occurred
         SQLiteDatabase database = getWritableDatabase();
         return database.insert(nameTable, null, values);
     }
 
-    public int updateData(String sql, ContentValues values, String condition, String[] pars){ // update return the number of rows affected
+    public int updateData(String sql, ContentValues values, String condition, String[] pars) { // update return the number of rows affected
         SQLiteDatabase database = getWritableDatabase();
-        return  database.update(sql, values, condition, pars);
+        return database.update(sql, values, condition, pars);
     }
 
 //    public void InsertNewProduct(String mahang,String tenhang,int soluong,double giaban,

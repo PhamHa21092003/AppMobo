@@ -4,18 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Action.Xuat_Hang_Action"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Action.Xuat_Hang_Action">
 
     <EditText
         android:id="@+id/edtTimKiemXuatHang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Tìm kiếm...."
-        android:textSize="30sp"
         android:inputType="textPersonName"
+        android:textSize="30sp"
 
         />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

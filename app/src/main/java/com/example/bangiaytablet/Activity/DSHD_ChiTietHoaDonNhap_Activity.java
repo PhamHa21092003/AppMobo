@@ -33,7 +33,7 @@ public class DSHD_ChiTietHoaDonNhap_Activity extends AppCompatActivity {
 
         lv = findViewById(R.id.lv_DSHD_ChitietHDnhap);
         arrayList = new ArrayList<>();
-        adapter = new DS_hoa_don_nhap_Adapter(this,R.layout.dong_ds_hd_nhap,arrayList);
+        adapter = new DS_hoa_don_nhap_Adapter(this, R.layout.dong_ds_hd_nhap, arrayList);
         lv.setAdapter(adapter);
 
 
@@ -44,15 +44,13 @@ public class DSHD_ChiTietHoaDonNhap_Activity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String maHD=Integer.toString(arrayList.get(i).getMaHoaDon());
-                intent =new Intent(DSHD_ChiTietHoaDonNhap_Activity.this,DSSP_ChiTietHoaDonNhap_Activity.class);
-                intent.putExtra("maHDNhap",maHD);
+                String maHD = Integer.toString(arrayList.get(i).getMaHoaDon());
+                intent = new Intent(DSHD_ChiTietHoaDonNhap_Activity.this, DSSP_ChiTietHoaDonNhap_Activity.class);
+                intent.putExtra("maHDNhap", maHD);
                 startActivity(intent);
-                Toast.makeText(DSHD_ChiTietHoaDonNhap_Activity.this,maHD,Toast.LENGTH_SHORT).show();
+                Toast.makeText(DSHD_ChiTietHoaDonNhap_Activity.this, maHD, Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
 
     }
@@ -62,22 +60,23 @@ public class DSHD_ChiTietHoaDonNhap_Activity extends AppCompatActivity {
         Cursor dataChitietHoadonNhap = database.GetData("SELECT maHDNhap, SUM(GiaNhap) as TONGTIENNHAP,SUM(SlNhap) as TONGSOSP,maHangNhap FROM ChiTietHoaDonNhap group by maHDNhap,maHangNhap order by maHDNhap DESC");
         arrayList.clear();
         while (dataHDNHap.moveToNext()) {
-            Double TONGTIENNHAP=0.0;
-            Double TONGTIENMATHANG=0.0;
-            String nhaCUngCap= dataHDNHap.getString(3);
-            String nguoiNhap=dataHDNHap.getString(2);
+            Double TONGTIENNHAP = 0.0;
+            Double TONGTIENMATHANG = 0.0;
+            String nhaCUngCap = dataHDNHap.getString(3);
+            String nguoiNhap = dataHDNHap.getString(2);
             int maHD = dataHDNHap.getInt(0);
             String ngaytaoHD = dataHDNHap.getString(1);
-            while(dataChitietHoadonNhap.moveToNext()){
-                int maHDCHitiet=dataChitietHoadonNhap.getInt(0);
-                if(maHDCHitiet==maHD){
-                    TONGTIENMATHANG=dataChitietHoadonNhap.getDouble(1)*dataChitietHoadonNhap.getInt(2);;
-                    TONGTIENNHAP+=TONGTIENMATHANG;
+            while (dataChitietHoadonNhap.moveToNext()) {
+                int maHDCHitiet = dataChitietHoadonNhap.getInt(0);
+                if (maHDCHitiet == maHD) {
+                    TONGTIENMATHANG = dataChitietHoadonNhap.getDouble(1) * dataChitietHoadonNhap.getInt(2);
+                    ;
+                    TONGTIENNHAP += TONGTIENMATHANG;
 
                 }
             }
             dataChitietHoadonNhap.moveToFirst();
-            arrayList.add(new HoaDonNhap(ngaytaoHD,nguoiNhap,nhaCUngCap,maHD,TONGTIENNHAP));
+            arrayList.add(new HoaDonNhap(ngaytaoHD, nguoiNhap, nhaCUngCap, maHD, TONGTIENNHAP));
 
         }
 //Sắp xếp tổng tiền giảm dần

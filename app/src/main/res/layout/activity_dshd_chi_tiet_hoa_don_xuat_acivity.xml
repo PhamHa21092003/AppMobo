@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.DSHD_ChiTietHoaDonXuat_Acivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Activity.DSHD_ChiTietHoaDonXuat_Acivity">
 
     <ListView
+        android:id="@+id/lv_DSHD_ChitietHDXuat"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/lv_DSHD_ChitietHDXuat"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

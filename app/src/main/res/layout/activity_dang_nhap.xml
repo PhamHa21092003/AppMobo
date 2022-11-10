@@ -19,7 +19,8 @@
             android:layout_width="350dp"
             android:layout_height="100dp"
             android:layout_marginBottom="40dp"
-            android:src="@drawable/logo"/>
+            android:src="@drawable/logo" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
@@ -30,45 +31,45 @@
             tools:layout_editor_absoluteX="92dp"
             tools:layout_editor_absoluteY="113dp" />
 
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-           <EditText
-               android:id="@+id/editTextTenDN"
-               android:layout_width="500dp"
-               android:layout_height="wrap_content"
-               android:ems="10"
-               android:hint="Tên đăng nhập"
-               android:inputType="textPersonName"
-               android:textSize="35sp"
-               android:layout_centerHorizontal="true"/>
+            <EditText
+                android:id="@+id/editTextTenDN"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:ems="10"
+                android:hint="Tên đăng nhập"
+                android:inputType="textPersonName"
+                android:textSize="35sp" />
 
-           <EditText
-               android:id="@+id/editTextMatKhauDN"
-               android:layout_width="500dp"
-               android:layout_height="wrap_content"
-               android:layout_below="@+id/editTextTenDN"
-               android:layout_centerHorizontal="true"
-               android:ems="10"
-               android:hint="Mật khẩu"
-               android:inputType="textPassword"
-               android:textSize="35sp" />
+            <EditText
+                android:id="@+id/editTextMatKhauDN"
+                android:layout_width="500dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextTenDN"
+                android:layout_centerHorizontal="true"
+                android:ems="10"
+                android:hint="Mật khẩu"
+                android:inputType="textPassword"
+                android:textSize="35sp" />
 
-           <TextView
-               android:id="@+id/tvquenmk"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_below="@+id/editTextMatKhauDN"
-               android:layout_alignRight="@+id/editTextMatKhauDN"
-               android:layout_gravity="right"
-               android:layout_marginRight="25dp"
-               android:layout_marginBottom="35sp"
-               android:paddingTop="15dp"
-               android:text="Quên mật khẩu?"
-               android:textColor="#000"
-               android:textSize="35dp" />
-       </RelativeLayout>
+            <TextView
+                android:id="@+id/tvquenmk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/editTextMatKhauDN"
+                android:layout_alignRight="@+id/editTextMatKhauDN"
+                android:layout_gravity="right"
+                android:layout_marginRight="25dp"
+                android:layout_marginBottom="35sp"
+                android:paddingTop="15dp"
+                android:text="Quên mật khẩu?"
+                android:textColor="#000"
+                android:textSize="35dp" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -81,17 +82,16 @@
                 android:layout_width="180dp"
                 android:layout_height="80dp"
                 android:text="Đăng nhập"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/btnDangKy"
                 android:layout_width="180dp"
                 android:layout_height="80dp"
-                android:textSize="20sp"
                 android:layout_marginLeft="30dp"
                 android:layout_toRightOf="@+id/btnDangNhap"
-                android:text="Đăng Ký" />
+                android:text="Đăng Ký"
+                android:textSize="20sp" />
 
         </RelativeLayout>
     </LinearLayout>

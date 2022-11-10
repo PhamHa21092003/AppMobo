@@ -2,7 +2,7 @@ package com.example.bangiaytablet.Class;
 
 public class TaiKhoan {
     int id, trangthai;
-    String username, password,name;
+    String username, password, name;
 
     public TaiKhoan(int id, String username, String password) {
         this.id = id;

@@ -4,19 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Action.SuaSP_Action"
     android:orientation="vertical"
-    android:padding="15dp">
+    android:padding="15dp"
+    tools:context=".Action.SuaSP_Action">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="35sp"
+        android:gravity="center"
         android:text="Sửa thông tin Sp"
         android:textAllCaps="false"
         android:textColor="@color/black"
-        android:textStyle="bold"
-        android:gravity="center"/>
+        android:textSize="35sp"
+        android:textStyle="bold" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,120 +59,115 @@
             android:inputType="textPersonName"
             android:textSize="25sp" />
 
-       <RelativeLayout
-           android:layout_below="@+id/editTextTenSanPhamSua"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:id="@+id/soluongsptrongkho">
+        <RelativeLayout
+            android:id="@+id/soluongsptrongkho"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editTextTenSanPhamSua">
 
-           <RelativeLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:id="@+id/SIZE41">
+            <RelativeLayout
+                android:id="@+id/SIZE41"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-               <TextView
-                   android:id="@+id/tvsls41"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_centerVertical="true"
-                   android:text="Số lượng sản phẩm size 41:"
-                   android:textSize="25sp" />
+                <TextView
+                    android:id="@+id/tvsls41"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Số lượng sản phẩm size 41:"
+                    android:textSize="25sp" />
 
-               <EditText
-                   android:id="@+id/edtsls41"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginLeft="15dp"
-                   android:layout_toRightOf="@+id/tvsls41"
-                   android:inputType="number"
-                   android:text="0"
-                   android:textSize="25sp" />
-           </RelativeLayout>
+                <EditText
+                    android:id="@+id/edtsls41"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/tvsls41"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textSize="25sp" />
+            </RelativeLayout>
 
-           <RelativeLayout
-               android:id="@+id/SIZE42"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_below="@+id/SIZE41">
+            <RelativeLayout
+                android:id="@+id/SIZE42"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/SIZE41">
 
-               <TextView
-                   android:id="@+id/tvsls42"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:layout_centerVertical="true"
-                   android:text="Số lượng sản phẩm size 42:"
-                   android:textSize="25sp" />
+                <TextView
+                    android:id="@+id/tvsls42"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Số lượng sản phẩm size 42:"
+                    android:textSize="25sp" />
 
-               <EditText
-                   android:id="@+id/edtsls42"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginLeft="15dp"
-                   android:layout_toRightOf="@+id/tvsls42"
-                   android:inputType="number"
-                   android:text="0"
-                   android:textSize="25sp" />
-           </RelativeLayout>
+                <EditText
+                    android:id="@+id/edtsls42"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/tvsls42"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textSize="25sp" />
+            </RelativeLayout>
 
-           <RelativeLayout
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:layout_below="@+id/SIZE42"
-               android:id="@+id/SIZE43">
+            <RelativeLayout
+                android:id="@+id/SIZE43"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/SIZE42">
 
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:id="@+id/tvsls43"
-                   android:text="Số lượng sản phẩm size 43:"
-                   android:textSize="25sp"
-                   android:layout_centerVertical="true"/>
+                <TextView
+                    android:id="@+id/tvsls43"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Số lượng sản phẩm size 43:"
+                    android:textSize="25sp" />
 
-               <EditText
-                   android:id="@+id/edtsls43"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginLeft="15dp"
-                   android:layout_toRightOf="@+id/tvsls43"
-                   android:inputType="number"
-                   android:text="0"
-                   android:textSize="25sp" />
-           </RelativeLayout>
+                <EditText
+                    android:id="@+id/edtsls43"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toRightOf="@+id/tvsls43"
+                    android:inputType="number"
+                    android:text="0"
+                    android:textSize="25sp" />
+            </RelativeLayout>
 
 
-       </RelativeLayout>
-
+        </RelativeLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:layout_below="@+id/soluongsptrongkho"
             android:layout_marginTop="10dp"
-            android:weightSum="2"
-            android:layout_below="@+id/soluongsptrongkho">
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <Button
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="Cập nhật"
-                android:layout_weight="1"
                 android:id="@+id/btnCapNhapSua"
-                android:layout_marginRight="5dp"/>
-
-            <Button
-                android:layout_marginLeft="5dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Hủy"
+                android:layout_marginRight="5dp"
                 android:layout_weight="1"
-                android:id="@+id/btnHuySua"/>
+                android:text="Cập nhật" />
+
+            <Button
+                android:id="@+id/btnHuySua"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:text="Hủy" />
 
         </LinearLayout>
-
-
-
-
 
 
     </RelativeLayout>

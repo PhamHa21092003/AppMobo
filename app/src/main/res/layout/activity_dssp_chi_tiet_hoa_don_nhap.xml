@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.DSSP_ChiTietHoaDonNhap_Activity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Activity.DSSP_ChiTietHoaDonNhap_Activity">
 
     <ListView
+        android:id="@+id/lv_DSSP_ChiTietHDNhap"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/lv_DSSP_ChiTietHDNhap"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
