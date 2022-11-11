@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -31,8 +32,9 @@ public class MainActivity extends AppCompatActivity {
     Intent intent;
     DatabaseQuanLy database;
     ArrayList<TaiKhoan> arrayListTaiKhoan, arrayListTaiKhoanOnline;
-    String user;
+    String hoTenNguoiNhap, tenTaiKhoanDangNhap;
     RelativeLayout hangtrongkho, nhaphang, xuathang, hoadonnhap, hoadonxuat;
+    Button logOut;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -43,19 +45,29 @@ public class MainActivity extends AppCompatActivity {
         //Tao DB
         database = new DatabaseQuanLy(this, "QuanLyBanGiayDn.sqlite", null, 1);
 
-        getTaiKhoanOnline();
+        //getTaiKhoanOnline();
 
-        String hoTenNguoiNhap = arrayListTaiKhoanOnline.get(0).getName().toString();
+        Cursor cursor = database.getData("select TenDN, Hoten from User where Trangthai=?", new String[]{"1"});
+        if(cursor != null && cursor.moveToNext()){
+            hoTenNguoiNhap = cursor.getString(1);
+            tenTaiKhoanDangNhap = cursor.getString(0);
+        }
+        else {
+            intent = new Intent(MainActivity.this, DangNhap_Activity.class);
+            startActivity(intent);
+        }
+
 
         hangtrongkho = findViewById(R.id.hangtrongkho);
         nhaphang = findViewById(R.id.nhaphang);
         xuathang = findViewById(R.id.xuathang);
         hoadonnhap = findViewById(R.id.hoadonnhap);
         hoadonxuat = findViewById(R.id.hoadonxuat);
+        logOut = findViewById(R.id.logOut);
 
 
         TextView userDN = findViewById(R.id.userDN);
-        userDN.setText("Chào mừng, " + hoTenNguoiNhap);
+        userDN.setText(hoTenNguoiNhap);
 
 
         arrayListTaiKhoan = new ArrayList<>();
@@ -67,6 +79,17 @@ public class MainActivity extends AppCompatActivity {
         database.QuerryData("CREATE TABLE IF NOT EXISTS Hang (MAHANG varchar(50) PRIMARY KEY, TENlOAIGIAY VARCHAR(200),TongSl INTEGER,Gia Double,HangSX VARCHAR(200),MauSac varchar(50),Size41 INTEGER,Size42 INTEGER,Size43 INTEGER,hinhanh BLOB)");
         database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonNhap (maHDNhap INTEGER ,maHangNhap VARCHAR(50),SlNhap INTEGER,GiaNhap Double,Size INTEGER)");
         database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonXuat (maHDXuat INTEGER ,maHangXuat VARCHAR(50),SlXuat INTEGER,GiaXuat Double,Size INTEGER)");
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(MainActivity.this, DangNhap_Activity.class);
+                ContentValues value = new ContentValues();
+                value.put("Trangthai", 0);
+                database.updateData("User", value, "TenDN=?", new String[] {tenTaiKhoanDangNhap});
+                startActivity(intent);
+            }
+        });
 
         hangtrongkho.setOnClickListener(new View.OnClickListener() {
             @Override

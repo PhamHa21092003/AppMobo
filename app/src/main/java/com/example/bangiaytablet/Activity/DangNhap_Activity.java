@@ -2,6 +2,7 @@ package com.example.bangiaytablet.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.example.bangiaytablet.Class.TaiKhoan;
 import com.example.bangiaytablet.Database.DatabaseQuanLy;
 import com.example.bangiaytablet.R;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 
 import java.util.ArrayList;
 
@@ -33,6 +35,16 @@ public class DangNhap_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_dang_nhap);
 
 
+//        Button check = findViewById(R.id.check);
+//        check.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Cursor cursor = database.getData("Select * from User where Trangthai=?", new String[]{"1"});
+//                if(cursor == null)
+//                    Toast.makeText(DangNhap_Activity.this, "null", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
         taiKhoanArrayList = new ArrayList<>();
         //Tao DB
         database = new DatabaseQuanLy(this, "QuanLyBanGiayDn.sqlite", null, 1);
@@ -40,14 +52,13 @@ public class DangNhap_Activity extends AppCompatActivity {
         //Tao bang
         database.QuerryData("CREATE TABLE IF NOT EXISTS User (ID INTEGER PRIMARY KEY AUTOINCREMENT,TenDN VARCHAR(50),MatKhau VARCHAR (25),HoTen NVARCHAR(50),Trangthai INTEGER)");
 
-        database.QuerryData("UPDATE User SET Trangthai=0");
+         // database.QuerryData("UPDATE User SET Trangthai=0");
         anhxa();
         user = getIntent().getStringExtra("userreg");
         tenDN.setText(user);
         pass = getIntent().getStringExtra("passreg");
         mk.setText(pass);
         getdata();
-
 
         dangky.setOnClickListener(new View.OnClickListener() {
             @Override

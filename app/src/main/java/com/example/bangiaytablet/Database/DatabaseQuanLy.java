@@ -35,9 +35,14 @@ public class DatabaseQuanLy extends SQLiteOpenHelper {
         return database.insert(nameTable, null, values);
     }
 
-    public int updateData(String sql, ContentValues values, String condition, String[] pars) { // update return the number of rows affected
+    public int updateData(String nameTable, ContentValues values, String condition, String[] pars) { // update return the number of rows affected
         SQLiteDatabase database = getWritableDatabase();
-        return database.update(sql, values, condition, pars);
+        return database.update(nameTable, values, condition, pars);
+    }
+
+    public int deleteData(String nameTable, String whereClause, String[] pars){
+        SQLiteDatabase database = getWritableDatabase();
+        return database.delete(nameTable, whereClause, pars);
     }
 
 //    public void InsertNewProduct(String mahang,String tenhang,int soluong,double giaban,

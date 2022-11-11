@@ -15,28 +15,33 @@
         <LinearLayout
             android:id="@+id/linear"
             android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/userDN"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@+id/hangtrongkho"
                 android:layout_centerHorizontal="true"
+                android:layout_marginRight="15dp"
                 android:layout_marginBottom="20dp"
                 android:text="ha"
                 android:textAllCaps="false" />
+
             <Button
-                android:text="Đăng xuất"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:id="@+id/logOut"
+                android:text="Đăng xuất"
+                android:textAllCaps="false" />
         </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/hangtrongkho"
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:layout_below="@+id/linear"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="5dp"
@@ -75,7 +80,7 @@
                         android:gravity="center_vertical"
                         android:paddingBottom="1dp"
                         android:text="Hàng trong kho"
-                        android:textAllCaps="true"
+                        android:textAllCaps="false"
                         android:textColor="@color/black"
                         android:textSize="35sp" />
 
@@ -160,7 +165,7 @@
                         android:gravity="center_vertical"
                         android:paddingBottom="1dp"
                         android:text="Nhập hàng"
-                        android:textAllCaps="true"
+                        android:textAllCaps="false"
                         android:textColor="@color/black"
                         android:textSize="35sp" />
 
@@ -244,7 +249,7 @@
                         android:gravity="center_vertical"
                         android:paddingBottom="1dp"
                         android:text="Xuất hàng"
-                        android:textAllCaps="true"
+                        android:textAllCaps="false"
                         android:textColor="@color/black"
                         android:textSize="35sp" />
 
@@ -326,7 +331,7 @@
                         android:gravity="center_vertical"
                         android:paddingBottom="1dp"
                         android:text="Hóa đơn nhập"
-                        android:textAllCaps="true"
+                        android:textAllCaps="false"
                         android:textColor="@color/black"
                         android:textSize="35sp" />
 
@@ -408,7 +413,7 @@
                         android:gravity="center_vertical"
                         android:paddingBottom="1dp"
                         android:text="Hóa đơn xuất"
-                        android:textAllCaps="true"
+                        android:textAllCaps="false"
                         android:textColor="@color/black"
                         android:textSize="35sp" />
 
