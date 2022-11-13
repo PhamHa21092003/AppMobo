@@ -8,87 +8,95 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp">
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/imageViewAnhSPChiTietHDXuat"
-            android:layout_width="78dp"
-            android:layout_height="76dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             app:srcCompat="@android:drawable/ic_menu_gallery" />
 
-        <TextView
-            android:id="@+id/tenspTRongdsHoaDonXuat"
+        <LinearLayout
+            android:id="@+id/linearMain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="90dp"
-            android:text="Tên sảm phẩm"
-            android:textAllCaps="true"
-            android:textSize="35sp" />
+            android:layout_marginTop="25dp"
+            android:layout_toRightOf="@+id/imageViewAnhSPChiTietHDXuat"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/giaspTRongdsHoaDonXuat"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tenspTRongdsHoaDonXuat"
+                android:layout_width="210dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Tên sảm phẩm"
+                android:textAllCaps="false"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/masptrongHDXuat"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Mã sảm phẩm"
+                android:textAllCaps="false"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_toRightOf="@+id/tenspTRongdsHoaDonXuat"
-            android:text="Giá nhập:"
-            android:textAllCaps="true"
-            android:textSize="23sp" />
+            android:layout_below="@+id/imageViewAnhSPChiTietHDXuat"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/masptrongHDXuat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tenspTRongdsHoaDonXuat"
-            android:layout_marginLeft="90dp"
-            android:text="Mã sảm phẩm"
-            android:textAllCaps="true"
-            android:textSize="23sp" />
-
-        <TextView
-            android:id="@+id/SizesptronghdXuat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tenspTRongdsHoaDonXuat"
-            android:layout_marginLeft="50dp"
-            android:layout_toRightOf="@+id/masptrongHDXuat"
-            android:text="Size:"
-            android:textAllCaps="true"
-            android:textSize="23dp" />
-
-        <TextView
-            android:id="@+id/ThuongHieusptronghdXuat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tenspTRongdsHoaDonXuat"
-            android:layout_marginLeft="50dp"
-            android:layout_toRightOf="@+id/SizesptronghdXuat"
-            android:text="Thương hiệu:"
-            android:textAllCaps="true"
-            android:textSize="23dp" />
-
-        <TextView
-            android:id="@+id/MauSacsptronghdXuat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tenspTRongdsHoaDonXuat"
-            android:layout_marginLeft="50dp"
-            android:layout_toRightOf="@+id/ThuongHieusptronghdXuat"
-            android:text="Màu sắc:"
-            android:textAllCaps="true"
-            android:textSize="23dp" />
-
-        <TextView
-            android:id="@+id/soluongsptronghdXuat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_toRightOf="@+id/giaspTRongdsHoaDonXuat"
-            android:text="SL:"
-            android:textAllCaps="true"
-            android:textSize="23dp" />
+            <TextView
+                android:id="@+id/giaspTRongdsHoaDonXuat"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Giá nhập:"
+                android:textAllCaps="false"
+                android:textSize="23sp" />
 
 
+            <TextView
+                android:id="@+id/SizesptronghdXuat"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Size:"
+                android:textAllCaps="false"
+                android:textSize="23dp" />
+
+            <TextView
+                android:id="@+id/ThuongHieusptronghdXuat"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Thương hiệu:"
+                android:textAllCaps="false"
+                android:textSize="23dp" />
+
+            <TextView
+                android:id="@+id/MauSacsptronghdXuat"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Màu sắc:"
+                android:textAllCaps="false"
+                android:textSize="23dp" />
+
+            <TextView
+                android:id="@+id/soluongsptronghdXuat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SL:"
+                android:textAllCaps="false"
+                android:textSize="23dp" />
+
+        </LinearLayout>
     </RelativeLayout>
 
 

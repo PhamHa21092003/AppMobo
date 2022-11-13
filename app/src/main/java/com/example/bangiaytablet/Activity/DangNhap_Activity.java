@@ -45,6 +45,7 @@ public class DangNhap_Activity extends AppCompatActivity {
 //            }
 //        });
 
+
         taiKhoanArrayList = new ArrayList<>();
         //Tao DB
         database = new DatabaseQuanLy(this, "QuanLyBanGiayDn.sqlite", null, 1);
@@ -52,7 +53,15 @@ public class DangNhap_Activity extends AppCompatActivity {
         //Tao bang
         database.QuerryData("CREATE TABLE IF NOT EXISTS User (ID INTEGER PRIMARY KEY AUTOINCREMENT,TenDN VARCHAR(50),MatKhau VARCHAR (25),HoTen NVARCHAR(50),Trangthai INTEGER)");
 
-         // database.QuerryData("UPDATE User SET Trangthai=0");
+//        Nhớ đăng nhập khi chưa đăng xuất
+//        Cursor checkOffOnline = database.getData("Select TenDN from User where Trangthai=?", new String[]{"1"});
+//        if (checkOffOnline != null && checkOffOnline.moveToNext()) {
+//            checkOffOnline.close();
+//            intent = new Intent(DangNhap_Activity.this, MainActivity.class);
+//            startActivity(intent);
+//        }
+
+        // database.QuerryData("UPDATE User SET Trangthai=0");
         anhxa();
         user = getIntent().getStringExtra("userreg");
         tenDN.setText(user);
@@ -117,6 +126,7 @@ public class DangNhap_Activity extends AppCompatActivity {
             String hoTen = dataTaiKhoan.getString(3);
             taiKhoanArrayList.add(new TaiKhoan(id, TenDN, MatKhau, hoTen));
         }
+        dataTaiKhoan.close();
     }
 
     private void anhxa() {

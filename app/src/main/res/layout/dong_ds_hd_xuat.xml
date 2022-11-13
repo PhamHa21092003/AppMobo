@@ -7,15 +7,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="15dp">
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/maHDXuat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="5dp"
             android:text="Mã hóa đơn"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
             android:textSize="35sp"
             android:textStyle="bold" />
 
@@ -23,10 +23,10 @@
             android:id="@+id/tongsotienXuat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="30dp"
             android:layout_toRightOf="@+id/maHDXuat"
             android:text="Tổng tiền"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
             android:textSize="25sp" />
 
         <TextView
@@ -34,9 +34,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/maHDXuat"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="5dp"
             android:text="Ngày xuất"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
             android:textSize="23sp" />
 
         <TextView
@@ -44,10 +44,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/maHDXuat"
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/ngayXuatHang"
             android:text="Người mua:"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
             android:textSize="23sp" />
 
         <TextView
@@ -55,10 +55,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/maHDXuat"
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/nguoiMua"
             android:text="Người xuất"
-            android:textAllCaps="true"
+            android:textAllCaps="false"
             android:textSize="23sp" />
     </RelativeLayout>
 </LinearLayout>

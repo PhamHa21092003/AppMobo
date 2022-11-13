@@ -8,94 +8,104 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="15dp">
+        android:padding="0dp">
 
         <ImageView
             android:id="@+id/imageViewAnhSPNhap"
-            android:layout_width="150dp"
-            android:layout_height="130dp"
+            android:layout_width="105dp"
+            android:layout_height="110dp"
             app:srcCompat="@android:drawable/ic_menu_gallery" />
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="11dp"
-            android:layout_toRightOf="@+id/imageViewAnhSPNhap">
+            android:layout_toRightOf="@+id/imageViewAnhSPNhap"
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <TextView
                 android:id="@+id/tenspDangNhap"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
+                android:layout_weight="1"
                 android:text="Tên sảm phẩm"
-                android:textAllCaps="true"
-                android:textSize="35dp" />
+                android:textAllCaps="false"
+                android:textSize="25dp" />
 
-            <TextView
-                android:id="@+id/maspDangNhap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tenspDangNhap"
-                android:layout_marginLeft="10dp"
-                android:text="Mã sảm phẩm"
-                android:textAllCaps="true"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/soluongspDangNhap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tenspDangNhap"
-                android:layout_marginLeft="30dp"
-                android:layout_toRightOf="@+id/maspDangNhap"
-                android:text="SL:"
-                android:textAllCaps="true"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/mausacspDangnhap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tenspDangNhap"
-                android:layout_marginLeft="30dp"
-                android:layout_toRightOf="@+id/soluongspDangNhap"
-                android:text="Màu sắc:"
-                android:textAllCaps="true"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/sizespDangnhap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tenspDangNhap"
-                android:layout_marginLeft="30dp"
-                android:layout_toRightOf="@+id/mausacspDangnhap"
-                android:text="Size:"
-                android:textAllCaps="true"
-                android:textSize="20dp" />
-
-            <TextView
-                android:id="@+id/GiaspDangnhap"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tenspDangNhap"
-                android:layout_marginLeft="30dp"
-                android:layout_toRightOf="@+id/sizespDangnhap"
-                android:text="Giá nhập:"
-                android:textAllCaps="true"
-                android:textSize="20dp" />
 
             <ImageView
                 android:id="@+id/btnXoaSPtrongDSDANgNhap"
                 android:layout_width="82dp"
                 android:layout_height="57dp"
-                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@+id/tenspDangNhap"
+                android:layout_weight="2"
                 android:src="@drawable/ic_action_delete" />
 
-        </RelativeLayout>
+        </LinearLayout>
 
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/maspDangNhap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Mã sảm phẩm"
+            android:textAllCaps="false"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/soluongspDangNhap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="SL:"
+            android:textAllCaps="false"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/mausacspDangnhap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Màu sắc:"
+            android:textAllCaps="false"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/sizespDangnhap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Size:"
+            android:textAllCaps="false"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/GiaspDangnhap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tenspDangNhap"
+            android:gravity="center"
+            android:text="Giá nhập:"
+            android:textAllCaps="false"
+            android:textSize="15dp" />
+    </LinearLayout>
 
 </LinearLayout>
