@@ -82,6 +82,15 @@ public class MainActivity extends AppCompatActivity {
         database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonNhap (maHDNhap INTEGER ,maHangNhap VARCHAR(50),SlNhap INTEGER,GiaNhap Double,Size INTEGER, TenDN VARCHAR(50))");
         database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonXuat (maHDXuat INTEGER ,maHangXuat VARCHAR(50),SlXuat INTEGER,GiaXuat Double,Size INTEGER, TenDN VARCHAR(50))");
 
+        // bỏ comment ra và chạy sau đó đăng nhập 1 tài khoản bất kí để xóa cơ sở dự liệu cũ đi
+        // sau đó comment lại và chạy lại app như bình thường
+        // chạy đc bình thường rồi thì xóa luôn mấy dòng này cx đc
+//        database.QuerryData("drop table HoaDonNhap");
+//        database.QuerryData("drop table HoaDonXuat");
+//        database.QuerryData("drop table Hang");
+//        database.QuerryData("drop table ChiTietHoaDonNhap");
+//        database.QuerryData("drop table ChiTietHoaDonXuat");
+
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
