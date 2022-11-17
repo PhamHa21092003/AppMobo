@@ -30,6 +30,7 @@ import java.util.ArrayList;
 
 public class HangTrongKho_Activity extends AppCompatActivity {
     DatabaseQuanLy database;
+    String nameAccount;
     ListView lv;
     Intent intent;
     ArrayList<Hang> arrayList;
@@ -55,15 +56,13 @@ public class HangTrongKho_Activity extends AppCompatActivity {
         database = new DatabaseQuanLy(this, "QuanLyBanGiayDn.sqlite", null, 1);
 
 
-        //Tao bang
-        database.QuerryData("CREATE TABLE IF NOT EXISTS Hang (MAHANG varchar(50) PRIMARY KEY, TENlOAIGIAY VARCHAR(200),TongSl INTEGER,Gia Float,HangSX VARCHAR(200),MauSac varchar(50),Size41 INTEGER,Size42 INTEGER,Size43 INTEGER)");
-
         //Them DULieu
 
 //       database.QuerryData("INSERT INTO Hang VALUES('MH1','Giày thể thao',5,10000,'ADIDAS','Den',1,1,3)");
 //       database.QuerryData("INSERT INTO Hang VALUES('MH2','Giày NIKE',10,20000,'ADIDAS','Den',5,2,3)");
 
-        hienthiDL();
+        nameAccount = database.getNameAccount();
+        hienthiDL(nameAccount);
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -84,17 +83,19 @@ public class HangTrongKho_Activity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String NDTIM = edtTimKiem.getText().toString().trim();
+                String NDTIM = edtTimKiem.getText().toString();
                 if (TextUtils.isEmpty(NDTIM)) {
                     Cursor dataHang = database.GetData("SELECT * FROM Hang");
                     arrayList.clear();
                     while (dataHang.moveToNext()) {
-                        int SL = dataHang.getInt(2);
-                        String TenHang = dataHang.getString(1);
-                        String MaHang = dataHang.getString(0);
-                        String MauSac = dataHang.getString(5);
-                        Double Gia = dataHang.getDouble(3);
-                        arrayList.add(new Hang(MaHang, TenHang, MauSac, SL, Gia, dataHang.getBlob(9)));
+                        if (nameAccount.equals(dataHang.getString(10))) {
+                            int SL = dataHang.getInt(2);
+                            String TenHang = dataHang.getString(1);
+                            String MaHang = dataHang.getString(0);
+                            String MauSac = dataHang.getString(5);
+                            Double Gia = dataHang.getDouble(3);
+                            arrayList.add(new Hang(MaHang, TenHang, MauSac, SL, Gia, dataHang.getBlob(9)));
+                        }
                     }
                     adapter.notifyDataSetChanged();
                     adapter = new Hang_Adapter(HangTrongKho_Activity.this, R.layout.dong_hang_trong_kho, arrayList);
@@ -106,12 +107,14 @@ public class HangTrongKho_Activity extends AppCompatActivity {
                 Cursor dataHang = database.GetData("SELECT * FROM Hang WHERE MAHANG Like '%" + NDTIM + "%' or TENlOAIGIAY Like '%" + NDTIM + "%' ");
                 arrayList.clear();
                 while (dataHang.moveToNext()) {
-                    int SL = dataHang.getInt(2);
-                    String TenHang = dataHang.getString(1);
-                    String MaHang = dataHang.getString(0);
-                    String MauSac = dataHang.getString(5);
-                    Double Gia = dataHang.getDouble(3);
-                    arrayList.add(new Hang(MaHang, TenHang, MauSac, SL, Gia, dataHang.getBlob(9)));
+                    if (nameAccount.equals(dataHang.getString(10))) {
+                        int SL = dataHang.getInt(2);
+                        String TenHang = dataHang.getString(1);
+                        String MaHang = dataHang.getString(0);
+                        String MauSac = dataHang.getString(5);
+                        Double Gia = dataHang.getDouble(3);
+                        arrayList.add(new Hang(MaHang, TenHang, MauSac, SL, Gia, dataHang.getBlob(9)));
+                    }
                 }
                 adapter.notifyDataSetChanged();
                 adapter = new Hang_Adapter(HangTrongKho_Activity.this, R.layout.dong_hang_trong_kho, arrayList);
@@ -131,12 +134,14 @@ public class HangTrongKho_Activity extends AppCompatActivity {
                     Cursor dataHang = database.GetData("SELECT * FROM Hang order by Gia DESC");
                     arrayList.clear();
                     while (dataHang.moveToNext()) {
-                        int SL = dataHang.getInt(2);
-                        String TenHang = dataHang.getString(1);
-                        String MaHang = dataHang.getString(0);
-                        String MauSac = dataHang.getString(5);
-                        Double Gia = dataHang.getDouble(3);
-                        arrayList.add(new Hang(MaHang, TenHang, MauSac, SL, Gia, dataHang.getBlob(9)));
+                        if (nameAccount.equals(dataHang.getString(10))) {
+                            int SL = dataHang.getInt(2);
+                            String TenHang = dataHang.getString(1);
+                            String MaHang = dataHang.getString(0);
+                            String MauSac = dataHang.getString(5);
+                            Double Gia = dataHang.getDouble(3);
+                            arrayList.add(new Hang(MaHang, TenHang, MauSac, SL, Gia, dataHang.getBlob(9)));
+                        }
                     }
                     adapter.notifyDataSetChanged();
                     adapter = new Hang_Adapter(HangTrongKho_Activity.this, R.layout.dong_hang_trong_kho, arrayList);
@@ -152,12 +157,14 @@ public class HangTrongKho_Activity extends AppCompatActivity {
                     Cursor dataHang = database.GetData("SELECT * FROM Hang order by Gia ASC");
                     arrayList.clear();
                     while (dataHang.moveToNext()) {
-                        int SL = dataHang.getInt(2);
-                        String TenHang = dataHang.getString(1);
-                        String MaHang = dataHang.getString(0);
-                        String MauSac = dataHang.getString(5);
-                        Double Gia = dataHang.getDouble(3);
-                        arrayList.add(new Hang(MaHang, TenHang, MauSac, SL, Gia, dataHang.getBlob(9)));
+                        if (nameAccount.equals(dataHang.getString(10))) {
+                            int SL = dataHang.getInt(2);
+                            String TenHang = dataHang.getString(1);
+                            String MaHang = dataHang.getString(0);
+                            String MauSac = dataHang.getString(5);
+                            Double Gia = dataHang.getDouble(3);
+                            arrayList.add(new Hang(MaHang, TenHang, MauSac, SL, Gia, dataHang.getBlob(9)));
+                        }
                     }
                     adapter.notifyDataSetChanged();
                     adapter = new Hang_Adapter(HangTrongKho_Activity.this, R.layout.dong_hang_trong_kho, arrayList);
@@ -167,21 +174,23 @@ public class HangTrongKho_Activity extends AppCompatActivity {
         });
     }
 
-    private void hienthiDL() {
+    private void hienthiDL(String name) {
         Cursor dataHang = database.GetData("SELECT * FROM Hang");
         arrayList.clear();
         while (dataHang.moveToNext()) {
-            int SL = dataHang.getInt(2);
-            String TenHang = dataHang.getString(1);
-            String MaHang = dataHang.getString(0);
-            String MauSac = dataHang.getString(5);
-            String hangSX = dataHang.getString(4);
-            int SLSize41 = dataHang.getInt(6);
-            int SLSize42 = dataHang.getInt(7);
-            int SLSize43 = dataHang.getInt(8);
-            Double Gia = dataHang.getDouble(3);
-            byte[] hinhanh = dataHang.getBlob(9);
-            arrayList.add(new Hang(MaHang, TenHang, hangSX, MauSac, SLSize41, SLSize42, SLSize43, SL, Gia, dataHang.getBlob(9)));
+            if (name.equals(dataHang.getString(10))) {
+                int SL = dataHang.getInt(2);
+                String TenHang = dataHang.getString(1);
+                String MaHang = dataHang.getString(0);
+                String MauSac = dataHang.getString(5);
+                String hangSX = dataHang.getString(4);
+                int SLSize41 = dataHang.getInt(6);
+                int SLSize42 = dataHang.getInt(7);
+                int SLSize43 = dataHang.getInt(8);
+                Double Gia = dataHang.getDouble(3);
+                byte[] hinhanh = dataHang.getBlob(9);
+                arrayList.add(new Hang(MaHang, TenHang, hangSX, MauSac, SLSize41, SLSize42, SLSize43, SL, Gia, dataHang.getBlob(9)));
+            }
         }
         adapter.notifyDataSetChanged();
     }
@@ -209,7 +218,7 @@ public class HangTrongKho_Activity extends AppCompatActivity {
                 dialog.dismiss();
 //                intent= new Intent(HangTrongKho_Activity.this,HangTrongKho_Activity.class);
 //                startActivity(intent);
-                hienthiDL();
+                hienthiDL(nameAccount);
             }
         });
 

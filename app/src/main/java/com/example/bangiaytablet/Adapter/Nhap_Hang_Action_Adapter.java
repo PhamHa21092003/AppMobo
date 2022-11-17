@@ -73,6 +73,7 @@ public class Nhap_Hang_Action_Adapter extends BaseAdapter {
             viewHolder = (ViewHolderNhap) view.getTag();
         }
         Hang Sp = HangList.get(position);
+        Double gia = Sp.getGia();
         String SL = Integer.toString(Sp.getSoLuong());
         viewHolder.tvTenSPNhap.setText(Sp.getTenHang());
         viewHolder.tvMaSPNhap.setText("Mã SP: " + Sp.getMaHang());
@@ -98,6 +99,7 @@ public class Nhap_Hang_Action_Adapter extends BaseAdapter {
                 intent.putExtra("Size42", Integer.toString(Sp.getSize42()));
                 intent.putExtra("Size43", Integer.toString(Sp.getSize43()));
                 intent.putExtra("tongSL", Integer.toString(Sp.getSoLuong()));
+                intent.putExtra("gia", Double.toString(gia));
                 context.startActivity(intent);
             }
         });

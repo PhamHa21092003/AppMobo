@@ -51,8 +51,10 @@ public class MainActivity extends AppCompatActivity {
         if(cursor != null && cursor.moveToNext()){
             hoTenNguoiNhap = cursor.getString(1);
             tenTaiKhoanDangNhap = cursor.getString(0);
+            cursor.close();
         }
         else {
+            cursor.close();
             intent = new Intent(MainActivity.this, DangNhap_Activity.class);
             startActivity(intent);
         }
@@ -74,11 +76,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Tao bang
-        database.QuerryData("CREATE TABLE IF NOT EXISTS HoaDonNhap (maHD INTEGER PRIMARY KEY AUTOINCREMENT,NgayTao VARCHAR(50),NguoiNhap VARCHAR(50),NhaCungCap VARCHAR(50))");
-        database.QuerryData("CREATE TABLE IF NOT EXISTS HoaDonXuat (maHDXuat INTEGER PRIMARY KEY AUTOINCREMENT,NgayTao VARCHAR(50),NguoiXuat VARCHAR(50),NguoiMua VARCHAR(50))");
-        database.QuerryData("CREATE TABLE IF NOT EXISTS Hang (MAHANG varchar(50) PRIMARY KEY, TENlOAIGIAY VARCHAR(200),TongSl INTEGER,Gia Double,HangSX VARCHAR(200),MauSac varchar(50),Size41 INTEGER,Size42 INTEGER,Size43 INTEGER,hinhanh BLOB)");
-        database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonNhap (maHDNhap INTEGER ,maHangNhap VARCHAR(50),SlNhap INTEGER,GiaNhap Double,Size INTEGER)");
-        database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonXuat (maHDXuat INTEGER ,maHangXuat VARCHAR(50),SlXuat INTEGER,GiaXuat Double,Size INTEGER)");
+        database.QuerryData("CREATE TABLE IF NOT EXISTS HoaDonNhap (maHD INTEGER PRIMARY KEY AUTOINCREMENT,NgayTao VARCHAR(50),NguoiNhap VARCHAR(50),NhaCungCap VARCHAR(50), TenDN VARCHAR(50))");
+        database.QuerryData("CREATE TABLE IF NOT EXISTS HoaDonXuat (maHDXuat INTEGER PRIMARY KEY AUTOINCREMENT,NgayTao VARCHAR(50),NguoiXuat VARCHAR(50),NguoiMua VARCHAR(50), TenDN VARCHAR(50))");
+        database.QuerryData("CREATE TABLE IF NOT EXISTS Hang (MAHANG varchar(50) PRIMARY KEY, TENlOAIGIAY VARCHAR(200),TongSl INTEGER,Gia Double,HangSX VARCHAR(200),MauSac varchar(50),Size41 INTEGER,Size42 INTEGER,Size43 INTEGER,hinhanh BLOB, TenDN VARCHAR(50))");
+        database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonNhap (maHDNhap INTEGER ,maHangNhap VARCHAR(50),SlNhap INTEGER,GiaNhap Double,Size INTEGER, TenDN VARCHAR(50))");
+        database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonXuat (maHDXuat INTEGER ,maHangXuat VARCHAR(50),SlXuat INTEGER,GiaXuat Double,Size INTEGER, TenDN VARCHAR(50))");
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,7 +158,9 @@ public class MainActivity extends AppCompatActivity {
                                 if (dateNhap.after(datehientai)) {
                                     Toast.makeText(MainActivity.this, "Ngày nhập không được quá ngày hiện tại", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    database.QuerryData("INSERT INTO HoaDonNhap VALUES(null,'" + ngayTaoNhap + "','" + hoTenNguoiNhap + "','" + NhaCungCap + "')");
+                                   // database.QuerryData("INSERT INTO HoaDonNhap VALUES(null,'" + ngayTaoNhap + "','" + hoTenNguoiNhap + "','" + NhaCungCap + "'," + "'" + tenTaiKhoanDangNhap + "')");
+                                    ContentValues values = database.valuesTableHoaDonNhap(ngayTaoNhap, hoTenNguoiNhap, NhaCungCap);
+                                    database.insertData("HoaDonNhap", values);
                                     Toast.makeText(MainActivity.this, "Tạo hóa đơn thành công", Toast.LENGTH_SHORT).show();
                                     intent = new Intent(MainActivity.this, Nhap_Hang_Activity.class);
                                     startActivity(intent);

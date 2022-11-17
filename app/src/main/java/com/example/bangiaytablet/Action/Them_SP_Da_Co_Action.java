@@ -8,6 +8,8 @@ import com.example.bangiaytablet.Class.HoaDonNhap;
 import com.example.bangiaytablet.Database.DatabaseQuanLy;
 import com.example.bangiaytablet.R;
 
+import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -15,6 +17,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.contentcapture.ContentCaptureCondition;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,13 +33,16 @@ public class Them_SP_Da_Co_Action extends AppCompatActivity {
     TextView maSPThem, tenSPThem, mausac, ThuongHieu;
     ImageView anhSP;
     int slCu, slTong;
+    Double price;
     String tensp, masp, slsp;
     String tenspnhan, maspnhan, thuonghieunhan, maunhan, size41nhan, size42nhan, size43nhan, tongSLnhan;
     Button btnThem, btnHuy;
     ArrayList<Hang> arrayList;
     ArrayList<HoaDonNhap> arrayListHoaDonNhap;
     ArrayList<ChitietHoaDonNhap> arrayListChiTietHoaDonNhap;
+    String nameAccount;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,16 +60,15 @@ public class Them_SP_Da_Co_Action extends AppCompatActivity {
         size42nhan = getIntent().getStringExtra("Size42");
         size43nhan = getIntent().getStringExtra("Size43");
         tongSLnhan = getIntent().getStringExtra("tongSL");
+        price = Double.parseDouble(getIntent().getStringExtra("gia"));
 
         database = new DatabaseQuanLy(this, "QuanLyBanGiayDn.sqlite", null, 1);
 
-        //Tao bang
-        database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonNhap (maHDNhap INTEGER ,maHangNhap VARCHAR(50),SlNhap INTEGER,GiaNhap Double,Size INTEGER)");
-
+        nameAccount = database.getNameAccount();
 
         maSPThem = findViewById(R.id.TextMaSanPhamThem);
         tenSPThem = findViewById(R.id.TextMaSanPhamThem);
-        GiaSpThem = findViewById(R.id.editTextGiaSanPhamThem);
+//        GiaSpThem = findViewById(R.id.editTextGiaSanPhamThem);
         btnThem = findViewById(R.id.btnThemSPMoiVaoKho);
         btnHuy = findViewById(R.id.btnHuyThemSPMoi);
         slSize41 = findViewById(R.id.edtsls41Nhap);
@@ -102,9 +107,8 @@ public class Them_SP_Da_Co_Action extends AppCompatActivity {
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String maHangThem, tenHangThem, giaSPNhap, thuonghieusp, mauSac;
                 int slhangThemINT, size41nhap, size42nhap, size43nhap, tongsoluongmoi, size41moi, size42moi, size43moi;
-                Double giaHagThemDouble, giaban;
+                // Double giaHagThemDouble, giaban;
                 boolean slDangSoNguyen = false;
 
 
@@ -135,14 +139,6 @@ public class Them_SP_Da_Co_Action extends AppCompatActivity {
                         size42moi = size42nhap + Integer.parseInt(size42nhan);
                         size43moi = size43nhap + Integer.parseInt(size43nhan);
 
-
-                        giaHagThemDouble = Double.parseDouble(GiaSpThem.getText().toString().trim());
-
-                        Double lai = giaHagThemDouble / 10;
-
-                        giaban = giaHagThemDouble + lai;
-
-
                         for (int i = 0; i < arrayList.size(); i++) {
                             if (maspnhan.equalsIgnoreCase(arrayList.get(i).getMaHang().toString().trim())) {
                                 tonatai = 1;
@@ -156,17 +152,22 @@ public class Them_SP_Da_Co_Action extends AppCompatActivity {
                             int maHD = arrayListHoaDonNhap.get(arrayListHoaDonNhap.size() - 1).getMaHoaDon();
 
 
-                            database.QuerryData("Update Hang Set TongSl='" + tongsoluongmoi + "',Gia='" + giaban + "',Size41='" + size41moi + "',Size42='" + size42moi + "',Size43='" + size43moi + "' WHERE MAHANG='" + maspnhan + "'");
+                            database.QuerryData("Update Hang Set TongSl='" + tongsoluongmoi + "',Size41='" + size41moi + "',Size42='" + size42moi + "',Size43='" + size43moi + "' WHERE MAHANG='" + maspnhan + "'and tenDN='" + nameAccount + "'");
                             if (size41nhap > 0) {
-                                database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('" + maHD + "','" + maspnhan + "','" + size41nhap + "','" + giaHagThemDouble + "',41)");
+                                //     database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('" + maHD + "','" + maspnhan + "','" + size41nhap + "','" + giaHagThemDouble + "',41)");
+                                ContentValues valuesInsertSize41Nhap = database.valuesTableChiTietHoaDonNhap(maHD, maspnhan, size41nhap, price, 41);
+                                database.insertData("ChiTietHoaDonNhap", valuesInsertSize41Nhap);
                             }
                             if (size42nhap > 0) {
-                                database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('" + maHD + "','" + maspnhan + "','" + size42nhap + "','" + giaHagThemDouble + "',42)");
+//                                database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('" + maHD + "','" + maspnhan + "','" + size42nhap + "','" + giaHagThemDouble + "',42)");
+                                ContentValues valuesInsertSize42Nhap = database.valuesTableChiTietHoaDonNhap(maHD, maspnhan, size42nhap, price, 42);
+                                database.insertData("ChiTietHoaDonNhap", valuesInsertSize42Nhap);
                             }
                             if (size43nhap > 0) {
-                                database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('" + maHD + "','" + maspnhan + "','" + size43nhap + "','" + giaHagThemDouble + "',43)");
+                                //   database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('" + maHD + "','" + maspnhan + "','" + size43nhap + "','" + giaHagThemDouble + "',43)");
+                                ContentValues valuesInsertSize43Nhap = database.valuesTableChiTietHoaDonNhap(maHD, maspnhan, size43nhap, price, 43);
+                                database.insertData("ChiTietHoaDonNhap", valuesInsertSize43Nhap);
                             }
-
                             Toast.makeText(Them_SP_Da_Co_Action.this, "Them Sp moi thành công", Toast.LENGTH_LONG).show();
                             intent = new Intent(Them_SP_Da_Co_Action.this, Nhap_Hang_Action.class);
                             startActivity(intent);

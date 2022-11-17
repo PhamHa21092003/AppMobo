@@ -12,6 +12,7 @@ import com.example.bangiaytablet.Database.DatabaseQuanLy;
 import com.example.bangiaytablet.R;
 
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -38,17 +39,17 @@ public class Them_SP_Moi_Action extends AppCompatActivity {
 
     Intent intent;
     DatabaseQuanLy database;
-    EditText maSPThem,tenSPThem,SlSpThem,GiaSpThem,ThuongHieu,slSize41,slSize42,slSize43,mausac;
-    int slCu,slTong;
-    String tensp,masp,slsp;
-    Button btnThem,btnHuy;
-    ImageView moCamera,moFolder,imghinhsp;
+    EditText maSPThem, tenSPThem, SlSpThem, GiaSpThem, ThuongHieu, slSize41, slSize42, slSize43, mausac;
+    int slCu, slTong;
+    String tensp, masp, slsp;
+    Button btnThem, btnHuy;
+    ImageView moCamera, moFolder, imghinhsp;
     ArrayList<Hang> arrayList;
     ArrayList<HoaDonNhap> arrayListHoaDonNhap;
     ArrayList<ChitietHoaDonNhap> arrayListChiTietHoaDonNhap;
-    final int REQUEST_CODE_CAMERA=123;
-    final int REQUEST_CODE_FOLDER=456;
-
+    final int REQUEST_CODE_CAMERA = 123;
+    final int REQUEST_CODE_FOLDER = 456;
+    String nameAccount;
 
 
     @Override
@@ -56,18 +57,15 @@ public class Them_SP_Moi_Action extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_sp_moi_action);
 
-        arrayList= new ArrayList<>();
-        arrayListHoaDonNhap= new ArrayList<>();
-        arrayListChiTietHoaDonNhap= new ArrayList<>();
+        arrayList = new ArrayList<>();
+        arrayListHoaDonNhap = new ArrayList<>();
+        arrayListChiTietHoaDonNhap = new ArrayList<>();
 
-        database= new DatabaseQuanLy(this, "QuanLyBanGiayDn.sqlite",null,1);
+        database = new DatabaseQuanLy(this, "QuanLyBanGiayDn.sqlite", null, 1);
 
-        //Tao bang
-        database.QuerryData("CREATE TABLE IF NOT EXISTS ChiTietHoaDonNhap (maHDNhap INTEGER ,maHangNhap VARCHAR(50),SlNhap INTEGER,GiaNhap Double,Size INTEGER)");
-
-
+        nameAccount = database.getNameAccount();
         anhxa();
-        getdata();
+        getdata(nameAccount);
         getdataHoaDonNhap();
 
         moCamera.setOnClickListener(new View.OnClickListener() {
@@ -93,14 +91,10 @@ public class Them_SP_Moi_Action extends AppCompatActivity {
         });
 
 
-
-
-
-
         btnHuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent =new Intent(Them_SP_Moi_Action.this,Nhap_Hang_Action.class);
+                intent = new Intent(Them_SP_Moi_Action.this, Nhap_Hang_Action.class);
                 startActivity(intent);
 
             }
@@ -109,38 +103,35 @@ public class Them_SP_Moi_Action extends AppCompatActivity {
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String maHangThem,tenHangThem,giaSPNhap,thuonghieusp,mauSac;
-                int slhangThemINT,size41nhap,size42nhap,size43nhap;
-                Double giaHagThemDouble,giaban;
-                boolean slDangSoNguyen=false;
+                String maHangThem, tenHangThem, giaSPNhap, thuonghieusp, mauSac;
+                int slhangThemINT, size41nhap, size42nhap, size43nhap;
+                Double giaHagThemDouble, giaban;
+                boolean slDangSoNguyen = false;
 
 
-
-                maHangThem=maSPThem.getText().toString().trim();
-                tenHangThem=tenSPThem.getText().toString().trim();
-                giaSPNhap=GiaSpThem.getText().toString().trim();
-                thuonghieusp=ThuongHieu.getText().toString().trim();
-                mauSac=mausac.getText().toString().trim();
+                maHangThem = maSPThem.getText().toString().trim();
+                tenHangThem = tenSPThem.getText().toString().trim();
+                giaSPNhap = GiaSpThem.getText().toString().trim();
+                thuonghieusp = ThuongHieu.getText().toString().trim();
+                mauSac = mausac.getText().toString().trim();
 
                 try {
                     Integer.parseInt(slSize41.getText().toString().trim());
                     Integer.parseInt(slSize42.getText().toString().trim());
                     Integer.parseInt(slSize43.getText().toString().trim());
-                    slDangSoNguyen=true;
-                }
-                catch (NumberFormatException e){
+                    slDangSoNguyen = true;
+                } catch (NumberFormatException e) {
 //
-                    slDangSoNguyen=false;
+                    slDangSoNguyen = false;
                 }
 
-                if(TextUtils.isEmpty(maHangThem)||TextUtils.isEmpty(tenHangThem)||
-                        TextUtils.isEmpty(giaSPNhap)||
-                        TextUtils.isEmpty(slSize43.getText().toString().trim())||
-                        TextUtils.isEmpty(slSize41.getText().toString().trim())||
-                        TextUtils.isEmpty(slSize42.getText().toString().trim())){
-                    Toast.makeText(Them_SP_Moi_Action.this,"Hãy nhập đủ thông tin",Toast.LENGTH_LONG).show();
-                }
-                else {
+                if (TextUtils.isEmpty(maHangThem) || TextUtils.isEmpty(tenHangThem) ||
+                        TextUtils.isEmpty(giaSPNhap) ||
+                        TextUtils.isEmpty(slSize43.getText().toString().trim()) ||
+                        TextUtils.isEmpty(slSize41.getText().toString().trim()) ||
+                        TextUtils.isEmpty(slSize42.getText().toString().trim())) {
+                    Toast.makeText(Them_SP_Moi_Action.this, "Hãy nhập đủ thông tin", Toast.LENGTH_LONG).show();
+                } else {
                     if (slDangSoNguyen) {
                         int tonatai = 0;
                         size41nhap = Integer.parseInt(slSize41.getText().toString().trim());
@@ -168,37 +159,43 @@ public class Them_SP_Moi_Action extends AppCompatActivity {
                             int maHD = arrayListHoaDonNhap.get(arrayListHoaDonNhap.size() - 1).getMaHoaDon();
 
                             //chuyển từ dataImageView ->byte[];
-                            BitmapDrawable bitmapDrawable= (BitmapDrawable) imghinhsp.getDrawable();
-                            Bitmap bitmap=bitmapDrawable.getBitmap();
-                            ByteArrayOutputStream byteArray= new ByteArrayOutputStream();
+                            BitmapDrawable bitmapDrawable = (BitmapDrawable) imghinhsp.getDrawable();
+                            Bitmap bitmap = bitmapDrawable.getBitmap();
+                            ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
                             bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArray);
-                            byte[] hinhAnh= byteArray.toByteArray();
+                            byte[] hinhAnh = byteArray.toByteArray();
 
 
-                            database.QuerryData("INSERT INTO Hang VALUES('" + maHangThem + "','" + tenHangThem + "','" + slhangThemINT + "','" + giaban + "','" + thuonghieusp + "','" + mauSac + "','" + size41nhap + "','" + size42nhap + "','" + size43nhap + "','"+hinhAnh+"')");
-                            database.updateImageProduct(maHangThem,hinhAnh);
+                            //database.QuerryData("INSERT INTO Hang VALUES('" + maHangThem + "','" + tenHangThem + "','" + slhangThemINT + "','" + giaban + "','" + thuonghieusp + "','" + mauSac + "','" + size41nhap + "','" + size42nhap + "','" + size43nhap + "','" + hinhAnh + "')");
+                            ContentValues values = database.valuesTableHang(maHangThem, tenHangThem, slhangThemINT, giaban, thuonghieusp, mauSac, size41nhap, size42nhap, size43nhap, hinhAnh);
+                            database.insertData("Hang", values);
+                            database.updateImageProduct(maHangThem, hinhAnh);
+                            values.clear();
+
                             if (size41nhap > 0) {
-                                database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('" + maHD + "','" + maHangThem + "','" + size41nhap + "','" + giaHagThemDouble + "',41)");
+//                                database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('" + maHD + "','" + maHangThem + "','" + size41nhap + "','" + giaHagThemDouble + "',41)");
+                                ContentValues valuesChiTietHoaDonSize41 = database.valuesTableChiTietHoaDonNhap(maHD, maHangThem, size41nhap, giaHagThemDouble, 41);
+                                database.insertData("ChiTietHoaDonNhap", valuesChiTietHoaDonSize41);
                             }
                             if (size42nhap > 0) {
-                                database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('" + maHD + "','" + maHangThem + "','" + size42nhap + "','" + giaHagThemDouble + "',42)");
+//                                database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('" + maHD + "','" + maHangThem + "','" + size42nhap + "','" + giaHagThemDouble + "',42)");
+                                ContentValues valuesChiTietHoaDonSize42 = database.valuesTableChiTietHoaDonNhap(maHD, maHangThem, size42nhap, giaHagThemDouble, 42);
+                                database.insertData("ChiTietHoaDonNhap", valuesChiTietHoaDonSize42);
                             }
                             if (size43nhap > 0) {
-                                database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('" + maHD + "','" + maHangThem + "','" + size43nhap + "','" + giaHagThemDouble + "',43)");
+//                                database.QuerryData("INSERT INTO ChiTietHoaDonNhap VALUES('" + maHD + "','" + maHangThem + "','" + size43nhap + "','" + giaHagThemDouble + "',43)");
+                                ContentValues valuesChiTietHoaDonSize43 = database.valuesTableChiTietHoaDonNhap(maHD, maHangThem, size43nhap, giaHagThemDouble, 43);
+                                database.insertData("ChiTietHoaDonNhap", valuesChiTietHoaDonSize43);
                             }
 
                             Toast.makeText(Them_SP_Moi_Action.this, "Them Sp moi thành công", Toast.LENGTH_LONG).show();
                             intent = new Intent(Them_SP_Moi_Action.this, Nhap_Hang_Action.class);
                             startActivity(intent);
                         }
-
-
-                    }
-                    else{
-                        Toast.makeText(Them_SP_Moi_Action.this,"Số lượng phải là dạng số nguyên",Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(Them_SP_Moi_Action.this, "Số lượng phải là dạng số nguyên", Toast.LENGTH_LONG).show();
                     }
                 }
-
             }
         });
     }
@@ -206,24 +203,22 @@ public class Them_SP_Moi_Action extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        switch (requestCode){
+        switch (requestCode) {
             case REQUEST_CODE_CAMERA:
-                if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                    Intent intent1=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent1,REQUEST_CODE_CAMERA);
-                }
-                else {
-                    Toast.makeText(Them_SP_Moi_Action.this,"Bạn không cấp quyền cho mở Camera",Toast.LENGTH_SHORT).show();
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent1 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(intent1, REQUEST_CODE_CAMERA);
+                } else {
+                    Toast.makeText(Them_SP_Moi_Action.this, "Bạn không cấp quyền cho mở Camera", Toast.LENGTH_SHORT).show();
                 }
                 break;
             case REQUEST_CODE_FOLDER:
-                if(grantResults.length>0 && grantResults[0]== PackageManager.PERMISSION_GRANTED){
-                    Intent intent1=new Intent(Intent.ACTION_PICK);
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Intent intent1 = new Intent(Intent.ACTION_PICK);
                     intent1.setType("image/*");
-                    startActivityForResult(intent1,REQUEST_CODE_FOLDER);
-                }
-                else {
-                    Toast.makeText(Them_SP_Moi_Action.this,"Bạn không cấp quyền cho mở Folder",Toast.LENGTH_SHORT).show();
+                    startActivityForResult(intent1, REQUEST_CODE_FOLDER);
+                } else {
+                    Toast.makeText(Them_SP_Moi_Action.this, "Bạn không cấp quyền cho mở Folder", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
@@ -234,15 +229,15 @@ public class Them_SP_Moi_Action extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode==REQUEST_CODE_CAMERA && resultCode==RESULT_OK && data!=null){
-            Bitmap bitmap= (Bitmap) data.getExtras().get("data");
+        if (requestCode == REQUEST_CODE_CAMERA && resultCode == RESULT_OK && data != null) {
+            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
             imghinhsp.setImageBitmap(bitmap);
         }
-        if(requestCode==REQUEST_CODE_FOLDER && resultCode==RESULT_OK && data!=null){
-            Uri uri= data.getData();
+        if (requestCode == REQUEST_CODE_FOLDER && resultCode == RESULT_OK && data != null) {
+            Uri uri = data.getData();
             try {
-                InputStream inputStream= getContentResolver().openInputStream(uri);
-                Bitmap bitmap= BitmapFactory.decodeStream(inputStream);
+                InputStream inputStream = getContentResolver().openInputStream(uri);
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
                 imghinhsp.setImageBitmap(bitmap);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -252,47 +247,47 @@ public class Them_SP_Moi_Action extends AppCompatActivity {
     }
 
     private void anhxa() {
-        maSPThem=findViewById(R.id.editTextMaSanPhamThemMoi);
-        tenSPThem=findViewById(R.id.editTextTenSanPhamThemMoi);
-        GiaSpThem=findViewById(R.id.editTextGiaSanPhamThemMoi);
-        btnThem=findViewById(R.id.btnThemSPMoiVaoKho);
-        btnHuy=findViewById(R.id.btnHuyThemSPMoi);
-        slSize41=findViewById(R.id.edtsls41Nhap);
-        slSize42=findViewById(R.id.edtsls42Nhap);
-        slSize43=findViewById(R.id.edtsls43Nhap);
-        ThuongHieu=findViewById(R.id.editTextHangSanPhamThemMoi);
-        mausac=findViewById(R.id.editTextMauSanPhamThemMoi);
-        moCamera=findViewById(R.id.btnThemanhMoiCamera);
-        moFolder=findViewById(R.id.btnThemanhMoiFolder);
-        imghinhsp=findViewById(R.id.imgSpThemMoi);
+        maSPThem = findViewById(R.id.editTextMaSanPhamThemMoi);
+        tenSPThem = findViewById(R.id.editTextTenSanPhamThemMoi);
+        GiaSpThem = findViewById(R.id.editTextGiaSanPhamThemMoi);
+        btnThem = findViewById(R.id.btnThemSPMoiVaoKho);
+        btnHuy = findViewById(R.id.btnHuyThemSPMoi);
+        slSize41 = findViewById(R.id.edtsls41Nhap);
+        slSize42 = findViewById(R.id.edtsls42Nhap);
+        slSize43 = findViewById(R.id.edtsls43Nhap);
+        ThuongHieu = findViewById(R.id.editTextHangSanPhamThemMoi);
+        mausac = findViewById(R.id.editTextMauSanPhamThemMoi);
+        moCamera = findViewById(R.id.btnThemanhMoiCamera);
+        moFolder = findViewById(R.id.btnThemanhMoiFolder);
+        imghinhsp = findViewById(R.id.imgSpThemMoi);
     }
 
-    private void getdata() {
+    private void getdata(String name) {
         Cursor dataHang = database.GetData("SELECT * FROM Hang ");
         arrayList.clear();
         while (dataHang.moveToNext()) {
-            int SL = dataHang.getInt(2);
-            String TenHang = dataHang.getString(1);
-            String MaHang = dataHang.getString(0);
-            String MauSac= dataHang.getString(5);
-            String hangSX=dataHang.getString(4);
-            int SLSize41=dataHang.getInt(6);
-            int SLSize42=dataHang.getInt(7);
-            int SLSize43=dataHang.getInt(8);
-            Double Gia=dataHang.getDouble(3);
-            arrayList.add(new Hang(MaHang,TenHang,hangSX,MauSac,SLSize41,SLSize42,SLSize43,SL,Gia));
+            if (name.equals(dataHang.getString(10))) {
+                int SL = dataHang.getInt(2);
+                String TenHang = dataHang.getString(1);
+                String MaHang = dataHang.getString(0);
+                String MauSac = dataHang.getString(5);
+                String hangSX = dataHang.getString(4);
+                int SLSize41 = dataHang.getInt(6);
+                int SLSize42 = dataHang.getInt(7);
+                int SLSize43 = dataHang.getInt(8);
+                Double Gia = dataHang.getDouble(3);
+                arrayList.add(new Hang(MaHang, TenHang, hangSX, MauSac, SLSize41, SLSize42, SLSize43, SL, Gia));
+            }
         }
     }
 
-    private void getdataHoaDonNhap(){
+    private void getdataHoaDonNhap() {
         Cursor dataHoaDonNhap = database.GetData("SELECT * FROM HoaDonNhap ");
         arrayListHoaDonNhap.clear();
         while (dataHoaDonNhap.moveToNext()) {
             int maHD = dataHoaDonNhap.getInt(0);
             String ngayNhap = dataHoaDonNhap.getString(1);
-            arrayListHoaDonNhap.add(new HoaDonNhap(ngayNhap,maHD));
+            arrayListHoaDonNhap.add(new HoaDonNhap(ngayNhap, maHD));
         }
     }
-
-
 }

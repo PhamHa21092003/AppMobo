@@ -30,6 +30,7 @@ public class Nhap_Hang_Action extends AppCompatActivity {
     EditText timkiemsp;
     ListView lv;
     Intent intent;
+    String nameAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class Nhap_Hang_Action extends AppCompatActivity {
         lv.setAdapter(adapter);
         //Tao DB
         database = new DatabaseQuanLy(this, "QuanLyBanGiayDn.sqlite", null, 1);
-
+        nameAccount = database.getNameAccount();
         hienthiDL();
 
         ImageView themSpmoi = findViewById(R.id.imageViewThemSPMoi);
@@ -68,12 +69,14 @@ public class Nhap_Hang_Action extends AppCompatActivity {
                     Cursor dataHang = database.GetData("SELECT * FROM Hang");
                     arrayList.clear();
                     while (dataHang.moveToNext()) {
-                        int SL = dataHang.getInt(2);
-                        String TenHang = dataHang.getString(1);
-                        String MaHang = dataHang.getString(0);
-                        String MauSac = dataHang.getString(5);
-                        Double Gia = dataHang.getDouble(3);
-                        arrayList.add(new Hang(MaHang, TenHang, MauSac, SL, Gia, dataHang.getBlob(9)));
+                        if (nameAccount.equals(dataHang.getString(10))) {
+                            int SL = dataHang.getInt(2);
+                            String TenHang = dataHang.getString(1);
+                            String MaHang = dataHang.getString(0);
+                            String MauSac = dataHang.getString(5);
+                            Double Gia = dataHang.getDouble(3);
+                            arrayList.add(new Hang(MaHang, TenHang, MauSac, SL, Gia, dataHang.getBlob(9)));
+                        }
                     }
                     adapter.notifyDataSetChanged();
                     adapter = new Nhap_Hang_Action_Adapter(Nhap_Hang_Action.this, R.layout.dong_nhap_hang, arrayList);
@@ -85,12 +88,14 @@ public class Nhap_Hang_Action extends AppCompatActivity {
                 Cursor dataHang = database.GetData("SELECT * FROM Hang WHERE MAHANG Like '%" + NDTIM + "%' or TENlOAIGIAY Like '%" + NDTIM + "%' ");
                 arrayList.clear();
                 while (dataHang.moveToNext()) {
-                    int SL = dataHang.getInt(2);
-                    String TenHang = dataHang.getString(1);
-                    String MaHang = dataHang.getString(0);
-                    String MauSac = dataHang.getString(5);
-                    Double Gia = dataHang.getDouble(3);
-                    arrayList.add(new Hang(MaHang, TenHang, MauSac, SL, Gia, dataHang.getBlob(9)));
+                    if (nameAccount.equals(dataHang.getString(10))) {
+                        int SL = dataHang.getInt(2);
+                        String TenHang = dataHang.getString(1);
+                        String MaHang = dataHang.getString(0);
+                        String MauSac = dataHang.getString(5);
+                        Double Gia = dataHang.getDouble(3);
+                        arrayList.add(new Hang(MaHang, TenHang, MauSac, SL, Gia, dataHang.getBlob(9)));
+                    }
                 }
                 adapter.notifyDataSetChanged();
                 adapter = new Nhap_Hang_Action_Adapter(Nhap_Hang_Action.this, R.layout.dong_nhap_hang, arrayList);
@@ -109,16 +114,18 @@ public class Nhap_Hang_Action extends AppCompatActivity {
         Cursor dataHang = database.GetData("SELECT * FROM Hang");
         arrayList.clear();
         while (dataHang.moveToNext()) {
-            int SL = dataHang.getInt(2);
-            String TenHang = dataHang.getString(1);
-            String MaHang = dataHang.getString(0);
-            String MauSac = dataHang.getString(5);
-            String hangSX = dataHang.getString(4);
-            int SLSize41 = dataHang.getInt(6);
-            int SLSize42 = dataHang.getInt(7);
-            int SLSize43 = dataHang.getInt(8);
-            Double Gia = dataHang.getDouble(3);
-            arrayList.add(new Hang(MaHang, TenHang, hangSX, MauSac, SLSize41, SLSize42, SLSize43, SL, Gia, dataHang.getBlob(9)));
+            if (nameAccount.equals(dataHang.getString(10))) {
+                int SL = dataHang.getInt(2);
+                String TenHang = dataHang.getString(1);
+                String MaHang = dataHang.getString(0);
+                String MauSac = dataHang.getString(5);
+                String hangSX = dataHang.getString(4);
+                int SLSize41 = dataHang.getInt(6);
+                int SLSize42 = dataHang.getInt(7);
+                int SLSize43 = dataHang.getInt(8);
+                Double Gia = dataHang.getDouble(3);
+                arrayList.add(new Hang(MaHang, TenHang, hangSX, MauSac, SLSize41, SLSize42, SLSize43, SL, Gia, dataHang.getBlob(9)));
+            }
         }
         adapter.notifyDataSetChanged();
     }

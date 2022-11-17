@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.media.session.PlaybackState;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +26,7 @@ public class DSHD_ChiTietHoaDonNhap_Activity extends AppCompatActivity {
     ArrayList<HoaDonNhap> arrayList;
     Intent intent;
     ListView lv;
+    String nameAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class DSHD_ChiTietHoaDonNhap_Activity extends AppCompatActivity {
 
 
         database = new DatabaseQuanLy(this, "QuanLyBanGiayDn.sqlite", null, 1);
+        nameAccount = database.getNameAccount();
 
         hienthiDL();
 
@@ -56,29 +59,49 @@ public class DSHD_ChiTietHoaDonNhap_Activity extends AppCompatActivity {
     }
 
     private void hienthiDL() {
-        Cursor dataHDNHap = database.GetData("SELECT * FROM HoaDonNhap order by maHD DESC");
-        Cursor dataChitietHoadonNhap = database.GetData("SELECT maHDNhap, SUM(GiaNhap) as TONGTIENNHAP,SUM(SlNhap) as TONGSOSP,maHangNhap FROM ChiTietHoaDonNhap group by maHDNhap,maHangNhap order by maHDNhap DESC");
+//        Cursor dataHDNHap = database.GetData("SELECT * FROM HoaDonNhap order by maHD DESC");
+//        Cursor dataChitietHoadonNhap = database.GetData("SELECT maHDNhap, SUM(GiaNhap) as TONGTIENNHAP,SUM(SlNhap) as TONGSOSP,maHangNhap FROM ChiTietHoaDonNhap group by maHDNhap,maHangNhap order by maHDNhap DESC");
+//        arrayList.clear();
+//        while (dataHDNHap.moveToNext()) {
+//            Double TONGTIENNHAP = 0.0;
+//            Double TONGTIENMATHANG = 0.0;
+//            String nhaCUngCap = dataHDNHap.getString(3);
+//            String nguoiNhap = dataHDNHap.getString(2);
+//            int maHD = dataHDNHap.getInt(0);
+//            String ngaytaoHD = dataHDNHap.getString(1);
+//            while (dataChitietHoadonNhap.moveToNext()) {
+//                int maHDCHitiet = dataChitietHoadonNhap.getInt(0);
+//                if (maHDCHitiet == maHD) {
+//                    TONGTIENMATHANG = dataChitietHoadonNhap.getDouble(1) * dataChitietHoadonNhap.getInt(2);
+//                    TONGTIENNHAP += TONGTIENMATHANG;
+//                }
+//            }
+//            dataChitietHoadonNhap.moveToFirst();
+//            arrayList.add(new HoaDonNhap(ngaytaoHD, nguoiNhap, nhaCUngCap, maHD, TONGTIENNHAP));
+//        }
+
+        Cursor dataHDNHap = database.getData("select maHD, NgayTao, NguoiNhap, NhaCungCap from HoaDonNhap where TenDn=?", new String[]{nameAccount});
         arrayList.clear();
         while (dataHDNHap.moveToNext()) {
-            Double TONGTIENNHAP = 0.0;
-            Double TONGTIENMATHANG = 0.0;
-            String nhaCUngCap = dataHDNHap.getString(3);
-            String nguoiNhap = dataHDNHap.getString(2);
-            int maHD = dataHDNHap.getInt(0);
-            String ngaytaoHD = dataHDNHap.getString(1);
+            int mahoadon = dataHDNHap.getInt(0);
+            String ngaytao = dataHDNHap.getString(1);
+            String nguoinhap = dataHDNHap.getString(2);
+            String nhacungcap = dataHDNHap.getString(3);
+            double tongtien = 0.0;
+            Cursor dataChitietHoadonNhap = database.getData(
+                    "SELECT GiaNhap, SlNhap, tenDN " +
+                            "FROM ChiTietHoaDonNhap " +
+                            "where maHDNhap=? and TenDn=?" ,
+                    new String[]{String.valueOf(mahoadon), nameAccount}
+            );
             while (dataChitietHoadonNhap.moveToNext()) {
-                int maHDCHitiet = dataChitietHoadonNhap.getInt(0);
-                if (maHDCHitiet == maHD) {
-                    TONGTIENMATHANG = dataChitietHoadonNhap.getDouble(1) * dataChitietHoadonNhap.getInt(2);
-                    ;
-                    TONGTIENNHAP += TONGTIENMATHANG;
-
-                }
+                    tongtien += dataChitietHoadonNhap.getDouble(0) * dataChitietHoadonNhap.getInt(1);
             }
-            dataChitietHoadonNhap.moveToFirst();
-            arrayList.add(new HoaDonNhap(ngaytaoHD, nguoiNhap, nhaCUngCap, maHD, TONGTIENNHAP));
-
+            dataChitietHoadonNhap.close();
+            arrayList.add(new HoaDonNhap(ngaytao, nguoinhap, nhacungcap, mahoadon, tongtien));
         }
+        dataHDNHap.close();
+        adapter.notifyDataSetChanged();
 //Sắp xếp tổng tiền giảm dần
 //        for(int i=0;i<arrayList.size();i++){
 //            for(int j=i+1;j<arrayList.size();j++){
@@ -91,6 +114,5 @@ public class DSHD_ChiTietHoaDonNhap_Activity extends AppCompatActivity {
 //            }
 //        }
 //        Collections.sort(arrayList);
-        adapter.notifyDataSetChanged();
     }
 }

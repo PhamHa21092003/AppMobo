@@ -54,12 +54,12 @@ public class DangNhap_Activity extends AppCompatActivity {
         database.QuerryData("CREATE TABLE IF NOT EXISTS User (ID INTEGER PRIMARY KEY AUTOINCREMENT,TenDN VARCHAR(50),MatKhau VARCHAR (25),HoTen NVARCHAR(50),Trangthai INTEGER)");
 
 //        Nhớ đăng nhập khi chưa đăng xuất
-//        Cursor checkOffOnline = database.getData("Select TenDN from User where Trangthai=?", new String[]{"1"});
-//        if (checkOffOnline != null && checkOffOnline.moveToNext()) {
-//            checkOffOnline.close();
-//            intent = new Intent(DangNhap_Activity.this, MainActivity.class);
-//            startActivity(intent);
-//        }
+        Cursor checkOffOnline = database.getData("Select TenDN from User where Trangthai=?", new String[]{"1"});
+        if (checkOffOnline != null && checkOffOnline.moveToNext()) {
+            checkOffOnline.close();
+            intent = new Intent(DangNhap_Activity.this, MainActivity.class);
+            startActivity(intent);
+        }
 
         // database.QuerryData("UPDATE User SET Trangthai=0");
         anhxa();

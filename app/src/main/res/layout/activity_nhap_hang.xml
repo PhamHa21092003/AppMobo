@@ -8,6 +8,11 @@
     android:orientation="vertical"
     tools:context=".Activity.Nhap_Hang_Activity">
 
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:text="check"-->
+<!--        android:id="@+id/check"-->
+<!--        android:layout_height="wrap_content" />-->
     <TextView
         android:id="@+id/mahoadonnhap"
         android:layout_width="match_parent"

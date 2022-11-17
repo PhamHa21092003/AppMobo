@@ -2,6 +2,7 @@ package com.example.bangiaytablet.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
@@ -39,6 +40,7 @@ public class Nhap_Hang_Activity extends AppCompatActivity {
     Intent intent;
     ListView lv;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
