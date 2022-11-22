@@ -1,18 +1,23 @@
 package com.example.bangiaytablet.Activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.media.session.PlaybackState;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.bangiaytablet.Adapter.DS_hoa_don_nhap_Adapter;
 import com.example.bangiaytablet.Class.HoaDonNhap;
+import com.example.bangiaytablet.Class.NgayThang;
 import com.example.bangiaytablet.Database.DatabaseQuanLy;
 import com.example.bangiaytablet.R;
 
@@ -54,8 +59,42 @@ public class DSHD_ChiTietHoaDonNhap_Activity extends AppCompatActivity {
                 Toast.makeText(DSHD_ChiTietHoaDonNhap_Activity.this, maHD, Toast.LENGTH_SHORT).show();
             }
         });
-
-
+//
+//        Button check = findViewById(R.id.check);
+//        check.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                EditText beforeDate = findViewById(R.id.beforeDate);
+//                EditText afterDate = findViewById(R.id.afterDate);
+//                String before = beforeDate.getText().toString();
+//                String after = afterDate.getText().toString();
+//                NgayThang ngayThang = new NgayThang(before, after);
+//                Cursor dataHDNHap = database.getData("select maHD, NgayTao, NguoiNhap, NhaCungCap from HoaDonNhap where TenDn=?", new String[]{nameAccount});
+//                arrayList.clear();
+//                while (dataHDNHap.moveToNext()) {
+//                    String ngaytao = dataHDNHap.getString(1);
+//                    if (ngayThang.comparisionDate(ngaytao)) {
+//                        int mahoadon = dataHDNHap.getInt(0);
+//                        String nguoinhap = dataHDNHap.getString(2);
+//                        String nhacungcap = dataHDNHap.getString(3);
+//                        double tongtien = 0.0;
+//                        Cursor dataChitietHoadonNhap = database.getData(
+//                                "SELECT GiaNhap, SlNhap, tenDN " +
+//                                        "FROM ChiTietHoaDonNhap " +
+//                                        "where maHDNhap=? and TenDn=?",
+//                                new String[]{String.valueOf(mahoadon), nameAccount}
+//                        );
+//                        while (dataChitietHoadonNhap.moveToNext()) {
+//                            tongtien += dataChitietHoadonNhap.getDouble(0) * dataChitietHoadonNhap.getInt(1);
+//                        }
+//                        dataChitietHoadonNhap.close();
+//                        arrayList.add(new HoaDonNhap(ngaytao, nguoinhap, nhacungcap, mahoadon, tongtien));
+//                    }
+//                }
+//                dataHDNHap.close();
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
     }
 
     private void hienthiDL() {
@@ -91,11 +130,11 @@ public class DSHD_ChiTietHoaDonNhap_Activity extends AppCompatActivity {
             Cursor dataChitietHoadonNhap = database.getData(
                     "SELECT GiaNhap, SlNhap, tenDN " +
                             "FROM ChiTietHoaDonNhap " +
-                            "where maHDNhap=? and TenDn=?" ,
+                            "where maHDNhap=? and TenDn=?",
                     new String[]{String.valueOf(mahoadon), nameAccount}
             );
             while (dataChitietHoadonNhap.moveToNext()) {
-                    tongtien += dataChitietHoadonNhap.getDouble(0) * dataChitietHoadonNhap.getInt(1);
+                tongtien += dataChitietHoadonNhap.getDouble(0) * dataChitietHoadonNhap.getInt(1);
             }
             dataChitietHoadonNhap.close();
             arrayList.add(new HoaDonNhap(ngaytao, nguoinhap, nhacungcap, mahoadon, tongtien));

@@ -6,9 +6,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activity.DSHD_ChiTietHoaDonNhap_Activity">
-
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <EditText-->
+<!--            android:id="@+id/beforeDate"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:hint="dd/MM/yy"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_height="wrap_content"/>-->
+<!--        <EditText-->
+<!--            android:id="@+id/afterDate"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:hint="dd/MM/yy"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_height="wrap_content"/>-->
+<!--        <Button-->
+<!--            android:id="@+id/check"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:text="kiểm trả"-->
+<!--            android:layout_height="match_parent"/>-->
+<!--    </LinearLayout>-->
     <ListView
         android:id="@+id/lv_DSHD_ChitietHDnhap"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
