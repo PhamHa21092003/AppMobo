@@ -48,12 +48,11 @@ public class MainActivity extends AppCompatActivity {
         //getTaiKhoanOnline();
 
         Cursor cursor = database.getData("select TenDN, Hoten from User where Trangthai=?", new String[]{"1"});
-        if(cursor != null && cursor.moveToNext()){
+        if (cursor != null && cursor.moveToNext()) {
             hoTenNguoiNhap = cursor.getString(1);
             tenTaiKhoanDangNhap = cursor.getString(0);
             cursor.close();
-        }
-        else {
+        } else {
             cursor.close();
             intent = new Intent(MainActivity.this, DangNhap_Activity.class);
             startActivity(intent);
@@ -94,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(MainActivity.this, DangNhap_Activity.class);
                 ContentValues value = new ContentValues();
                 value.put("Trangthai", 0);
-                database.updateData("User", value, "TenDN=?", new String[] {tenTaiKhoanDangNhap});
+                database.updateData("User", value, null, null);
                 startActivity(intent);
             }
         });
@@ -102,9 +101,15 @@ public class MainActivity extends AppCompatActivity {
         hangtrongkho.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                intent = new Intent(MainActivity.this, HangTrongKho_Activity.class);
-                startActivity(intent);
-                Toast.makeText(MainActivity.this, "Hàng trong kho", Toast.LENGTH_LONG).show();
+                String tenDN = database.getNameAccount();
+                Cursor sql = database.getData("select * from HoaDonNhap where TenDN=?", new String[]{tenDN});
+                if (sql != null && sql.moveToNext()) {
+                    sql.close();
+                    intent = new Intent(MainActivity.this, HangTrongKho_Activity.class);
+                    startActivity(intent);
+                    Toast.makeText(MainActivity.this, "Hàng trong kho", Toast.LENGTH_LONG).show();
+                } else
+                    Toast.makeText(MainActivity.this, "không có hàng trong kho", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -164,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
                                 if (dateNhap.after(datehientai)) {
                                     Toast.makeText(MainActivity.this, "Ngày nhập không được quá ngày hiện tại", Toast.LENGTH_SHORT).show();
                                 } else {
-                                   // database.QuerryData("INSERT INTO HoaDonNhap VALUES(null,'" + ngayTaoNhap + "','" + hoTenNguoiNhap + "','" + NhaCungCap + "'," + "'" + tenTaiKhoanDangNhap + "')");
+                                    // database.QuerryData("INSERT INTO HoaDonNhap VALUES(null,'" + ngayTaoNhap + "','" + hoTenNguoiNhap + "','" + NhaCungCap + "'," + "'" + tenTaiKhoanDangNhap + "')");
                                     ContentValues values = database.valuesTableHoaDonNhap(ngayTaoNhap, hoTenNguoiNhap, NhaCungCap);
                                     database.insertData("HoaDonNhap", values);
                                     Toast.makeText(MainActivity.this, "Tạo hóa đơn thành công", Toast.LENGTH_SHORT).show();

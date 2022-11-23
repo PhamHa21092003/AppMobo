@@ -30,6 +30,7 @@
         <activity
             android:name=".Activity.DSHD_ChiTietHoaDonXuat_Acivity"
             android:exported="false"
+            android:colorMode="@android:integer/status_bar_notification_info_maxnum"
             android:parentActivityName=".Activity.MainActivity"
             android:label="Danh sách hóa đơn xuất"/>
         <activity
@@ -76,6 +77,7 @@
             android:name=".Activity.Nhap_Hang_Activity"
             android:exported="false"
             android:parentActivityName=".Activity.MainActivity"
+            android:colorMode="hdr"
             android:label="Nhập hàng"/>
         <activity
             android:name=".Action.SuaSP_Action"

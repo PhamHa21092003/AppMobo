@@ -30,6 +30,7 @@
                 android:textAllCaps="false" />
 
             <Button
+                android:background="@color/cardview_shadow_end_color"
                 android:id="@+id/logOut"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
